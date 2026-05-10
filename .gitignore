@@ -1,0 +1,113 @@
+# ─────────────────────────────────────────────────
+# Environment & Secrets — NEVER commit
+# ─────────────────────────────────────────────────
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+*.cert
+config.local.php
+
+# ─────────────────────────────────────────────────
+# Storage (server-only — never commit)
+# ─────────────────────────────────────────────────
+storage/logs/*
+!storage/logs/.gitkeep
+storage/cache/*
+!storage/cache/.gitkeep
+storage/uploads/*
+!storage/uploads/.gitkeep
+storage/sessions/*
+!storage/sessions/.gitkeep
+
+# ─────────────────────────────────────────────────
+# Composer (if used later)
+# ─────────────────────────────────────────────────
+vendor/
+composer.phar
+# Keep composer.json and composer.lock if you decide to use Composer
+
+# ─────────────────────────────────────────────────
+# Logs
+# ─────────────────────────────────────────────────
+*.log
+logs/
+error_log
+access_log
+
+# ─────────────────────────────────────────────────
+# IDE / Editor
+# ─────────────────────────────────────────────────
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+.history/
+
+# ─────────────────────────────────────────────────
+# OS files
+# ─────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ─────────────────────────────────────────────────
+# Temp / Cache files
+# ─────────────────────────────────────────────────
+*.tmp
+*.temp
+*.bak
+*.backup
+.cache/
+.parcel-cache/
+
+# ─────────────────────────────────────────────────
+# Node (if using Tailwind CLI locally to compile CSS)
+# ─────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+package-lock.json
+yarn-error.log
+.pnpm-store/
+
+# ─────────────────────────────────────────────────
+# Build outputs (Tailwind compiled CSS goes to public/assets/css/)
+# Note: we DO commit the compiled CSS so the server doesn't need Node
+# ─────────────────────────────────────────────────
+# (intentionally NOT excluded: public/assets/css/app.css)
+
+# ─────────────────────────────────────────────────
+# cPanel local files
+# ─────────────────────────────────────────────────
+.cpanel.cache/
+
+# ─────────────────────────────────────────────────
+# PHPUnit (if added later)
+# ─────────────────────────────────────────────────
+.phpunit.result.cache
+phpunit.xml
+
+# ─────────────────────────────────────────────────
+# Local-only docs
+# ─────────────────────────────────────────────────
+NOTES.md
+TODO-LOCAL.md
+*.local.md
+
+# ─────────────────────────────────────────────────
+# Database dumps (NEVER commit production data)
+# ─────────────────────────────────────────────────
+*.sql.gz
+*.dump
+backup_*.sql
+dump_*.sql
+# Note: migration files (database/migrations/*.sql) ARE committed

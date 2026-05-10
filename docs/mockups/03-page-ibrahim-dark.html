@@ -1,0 +1,1417 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0A0A0A">
+<title>Les 8 ans d'Ibrahim 🎮 · MyWish.ma</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --primary: #EA580C;
+  --primary-soft: #FB923C;
+  --primary-deep: #C2410C;
+  --primary-bg: rgba(234, 88, 12, 0.08);
+  --primary-border: rgba(234, 88, 12, 0.22);
+
+  --gold: #FCD34D;
+  --gold-soft: #FDE68A;
+  --gold-bg: rgba(252, 211, 77, 0.1);
+  --gold-border: rgba(252, 211, 77, 0.22);
+
+  --bg-deep: #0A0A0A;
+  --bg-raised: #18181B;
+  --bg-high: #27272A;
+  --bg-overlay: rgba(255, 255, 255, 0.04);
+
+  --border: #2D2D30;
+  --border-strong: #3F3F46;
+
+  --text-primary: #FAFAF9;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --text-ghost: #52525B;
+
+  --success: #34D399;
+  --success-bg: rgba(52, 211, 153, 0.1);
+  --warning: #FBBF24;
+  --warning-bg: rgba(251, 191, 36, 0.1);
+  --danger: #F87171;
+  --danger-bg: rgba(248, 113, 113, 0.1);
+
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px;
+
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --r-xl: 20px; --r-2xl: 24px; --r-3xl: 32px;
+  --r-full: 999px;
+
+  --shadow-glow: 0 0 32px rgba(234, 88, 12, 0.3);
+  --shadow-glow-lg: 0 0 64px rgba(234, 88, 12, 0.4);
+  --shadow-gold-glow: 0 0 32px rgba(252, 211, 77, 0.3);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  --t-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html, body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(234, 88, 12, 0.15), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(252, 211, 77, 0.06), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ========== TOP NAV ========== */
+.topnav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  padding: var(--s-3) var(--s-4);
+}
+.topnav-content {
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+.brand-mini {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+.brand-mini-icon {
+  width: 26px;
+  height: 26px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.brand-mini-icon svg { width: 13px; height: 13px; }
+.brand-mini-suffix { color: var(--text-muted); font-weight: 500; }
+
+.icon-btn {
+  width: 36px;
+  height: 36px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--t-fast);
+}
+.icon-btn:hover {
+  background: var(--bg-high);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.icon-btn svg { width: 18px; height: 18px; }
+
+/* ========== CONTAINER ========== */
+.wrap {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: var(--s-5) var(--s-4) var(--s-12);
+}
+
+/* ========== HERO ========== */
+.hero {
+  text-align: center;
+  padding: var(--s-8) 0 var(--s-6);
+  position: relative;
+}
+.hero-photo {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto var(--s-5);
+  border-radius: var(--r-3xl);
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.15), rgba(252, 211, 77, 0.1));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid rgba(234, 88, 12, 0.3);
+  box-shadow: var(--shadow-gold-glow), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  overflow: visible;
+}
+.hero-photo-emoji {
+  font-size: 70px;
+  line-height: 1;
+  filter: drop-shadow(0 8px 24px rgba(234, 88, 12, 0.4));
+  animation: photo-float 4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes photo-float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-4px) scale(1.02); }
+}
+.hero-age-badge {
+  position: absolute;
+  bottom: -10px;
+  right: -10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  color: white;
+  border: 4px solid var(--bg-deep);
+  box-shadow: var(--shadow-glow);
+  letter-spacing: -0.02em;
+}
+
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold-bg);
+  color: var(--gold);
+  padding: 5px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s-4);
+  border: 1px solid var(--gold-border);
+}
+.hero-eyebrow svg { width: 12px; height: 12px; }
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 8vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: var(--s-4);
+  color: var(--text-primary);
+}
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--primary-soft) 0%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--s-3);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-6);
+}
+.hero-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.hero-meta-item svg {
+  width: 15px;
+  height: 15px;
+  color: var(--primary-soft);
+}
+
+/* ========== COUNTDOWN ========== */
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--s-2);
+  margin-bottom: var(--s-8);
+}
+.countdown-cell {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-4) var(--s-2);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.countdown-cell::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(234, 88, 12, 0.3), transparent);
+}
+.countdown-val {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--text-primary), var(--primary-soft));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.countdown-lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* ========== SECTIONS ========== */
+.card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2xl);
+  padding: var(--s-6);
+  margin-bottom: var(--s-4);
+  position: relative;
+}
+.section-header-block {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  margin-bottom: var(--s-2);
+}
+.section-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--primary-bg);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--r-md);
+  color: var(--primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.section-icon svg { width: 18px; height: 18px; }
+.section-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.section-sub {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: var(--s-5);
+  line-height: 1.5;
+}
+
+/* ========== INVITATION ========== */
+.invitation {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.08), transparent 60%),
+    var(--bg-raised);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--r-2xl);
+  padding: var(--s-6);
+  margin-bottom: var(--s-4);
+  text-align: center;
+}
+.invitation-text {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--text-primary);
+  margin-bottom: var(--s-2);
+}
+.invitation-sub {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: var(--s-6);
+  line-height: 1.5;
+}
+
+.rsvp-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+  margin-bottom: var(--s-5);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-4) var(--s-5);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  font-family: var(--font-body);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+}
+.btn:active { transform: scale(0.97); }
+.btn svg { width: 16px; height: 16px; }
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.btn-primary:hover {
+  background: var(--primary-soft);
+  box-shadow: var(--shadow-glow-lg);
+  transform: translateY(-1px);
+}
+.btn-secondary {
+  background: var(--bg-high);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary-soft);
+}
+.btn-block { width: 100%; }
+.btn-lg { padding: var(--s-4) var(--s-6); font-size: 15px; }
+
+.rsvp-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.rsvp-avatars {
+  display: flex;
+  align-items: center;
+}
+.rsvp-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border: 2px solid var(--bg-raised);
+  font-weight: 700;
+  color: white;
+  font-family: var(--font-display);
+}
+.rsvp-avatar:not(:first-child) { margin-left: -10px; }
+.rsvp-avatar.more {
+  background: var(--bg-high);
+  color: var(--text-secondary);
+  font-size: 11px;
+}
+.rsvp-summary-text {
+  flex: 1;
+  text-align: left;
+}
+.rsvp-summary-text strong {
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+/* ========== CAGNOTTE ========== */
+.target-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold-bg);
+  color: var(--gold);
+  padding: 5px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: var(--s-5);
+  border: 1px solid var(--gold-border);
+}
+.target-pill svg { width: 12px; height: 12px; }
+
+/* Animation Ibrahim → PS5 */
+.quest {
+  position: relative;
+  height: 80px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  margin-bottom: var(--s-5);
+  overflow: hidden;
+}
+.quest-track {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: 50%;
+  height: 4px;
+  background: var(--bg-high);
+  border-radius: var(--r-full);
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+.quest-track-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 42%;
+  background: linear-gradient(90deg, var(--primary-deep), var(--primary), var(--gold));
+  border-radius: var(--r-full);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+.quest-track-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2.5s infinite;
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.quest-runner {
+  position: absolute;
+  left: 42%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  border: 3px solid var(--bg-deep);
+  box-shadow: var(--shadow-glow);
+  z-index: 2;
+  animation: runner-bounce 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes runner-bounce {
+  0%, 100% { transform: translate(-50%, -50%); }
+  50% { transform: translate(-50%, -60%); }
+}
+.quest-start, .quest-end {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  z-index: 1;
+}
+.quest-start {
+  left: 8px;
+  background: var(--bg-high);
+  border: 2px solid var(--border-strong);
+  color: var(--text-secondary);
+}
+.quest-end {
+  right: 8px;
+  background: var(--gold-bg);
+  border: 2px solid var(--gold-border);
+  color: var(--gold);
+}
+.quest-end svg { width: 16px; height: 16px; }
+
+/* Stats compact line */
+.cagnotte-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  padding: var(--s-4) var(--s-5);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  margin-bottom: var(--s-5);
+}
+.cag-stat {
+  text-align: center;
+  flex: 1;
+}
+.cag-stat-val {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.cag-stat-val.recolted {
+  background: linear-gradient(135deg, var(--primary-soft), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cag-stat-val.total { color: var(--text-secondary); font-weight: 700; }
+.cag-stat-val.percent { color: var(--text-primary); }
+.cag-stat-lbl {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  margin-top: 4px;
+}
+.cag-stat-sep {
+  width: 1px;
+  height: 28px;
+  background: var(--border);
+}
+
+/* Form contribution */
+.cag-divider {
+  height: 1px;
+  background: var(--border);
+  margin: var(--s-5) 0;
+}
+.form-section-title {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: var(--s-4);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  letter-spacing: -0.01em;
+}
+.optional-tag {
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--gold);
+  background: var(--gold-bg);
+  padding: 3px 8px;
+  border-radius: var(--r-full);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: 1px solid var(--gold-border);
+}
+
+.form-row { margin-bottom: var(--s-4); }
+.form-row label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--s-3);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.form-row label .step-num {
+  width: 20px;
+  height: 20px;
+  background: var(--primary-bg);
+  border: 1px solid var(--primary-border);
+  color: var(--primary-soft);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Avatar grid */
+.avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--s-2);
+}
+.avatar-tile {
+  aspect-ratio: 1;
+  background: var(--bg-deep);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  position: relative;
+  font-size: 22px;
+  padding: 4px;
+  gap: 2px;
+}
+.avatar-tile:hover {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+  transform: translateY(-2px);
+}
+.avatar-tile.selected {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+  box-shadow: var(--shadow-glow);
+}
+.avatar-tile.selected::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 16px;
+  height: 16px;
+  background: var(--primary);
+  border-radius: 50%;
+  border: 2px solid var(--bg-raised);
+}
+.avatar-emoji { font-size: 20px; line-height: 1; }
+.avatar-name {
+  font-size: 8px;
+  color: var(--text-muted);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* Amount input */
+.amt-row {
+  display: flex;
+  gap: var(--s-2);
+  margin-bottom: var(--s-3);
+}
+.input {
+  flex: 1;
+  padding: var(--s-3) var(--s-4);
+  background: var(--bg-deep);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--r-md);
+  font-size: 16px;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  transition: all var(--t-fast);
+  -webkit-appearance: none;
+  outline: none;
+  font-weight: 600;
+}
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+}
+.input::placeholder { color: var(--text-muted); font-weight: 400; }
+.amt-currency {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--s-4);
+  background: var(--bg-deep);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  color: var(--text-secondary);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+}
+
+.preset-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--s-2);
+  margin-bottom: var(--s-5);
+}
+.preset {
+  padding: var(--s-2) var(--s-1);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  font-family: var(--font-body);
+}
+.preset:hover {
+  border-color: var(--primary);
+  color: var(--primary-soft);
+  background: var(--primary-bg);
+}
+
+/* ========== TABS ========== */
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 4px;
+  margin-bottom: var(--s-4);
+}
+.tab {
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.tab svg { width: 14px; height: 14px; }
+.tab.active {
+  background: var(--bg-high);
+  color: var(--text-primary);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+.tab .count {
+  background: var(--primary-bg);
+  color: var(--primary-soft);
+  padding: 1px 6px;
+  border-radius: var(--r-full);
+  font-size: 10px;
+  font-weight: 700;
+  border: 1px solid var(--primary-border);
+}
+
+/* ========== CONTRIBUTOR LIST ========== */
+.contrib-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.contrib-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-3);
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition: all var(--t-fast);
+}
+.contrib-item:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-high);
+}
+.contrib-item.pending {
+  background: rgba(251, 191, 36, 0.04);
+  border-color: rgba(251, 191, 36, 0.15);
+}
+.contrib-avatar {
+  width: 38px;
+  height: 38px;
+  background: var(--bg-high);
+  border: 1px solid var(--border-strong);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.contrib-info {
+  flex: 1;
+  min-width: 0;
+}
+.contrib-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.005em;
+}
+.contrib-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+.contrib-amount {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+.contrib-amount-val {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.contrib-amount-val.pending { color: var(--warning); }
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px var(--s-2);
+  border-radius: var(--r-full);
+  font-size: 10px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  letter-spacing: 0.02em;
+}
+.badge svg { width: 10px; height: 10px; }
+.badge-success {
+  background: var(--success-bg);
+  color: var(--success);
+}
+.badge-warning {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+/* ========== SHARE SECTION ========== */
+.share-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--s-3);
+  margin-top: var(--s-5);
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--border);
+}
+
+.btn-share {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-strong);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  font-family: var(--font-body);
+}
+.btn-share:hover {
+  background: var(--bg-high);
+  border-color: var(--primary);
+  color: var(--primary-soft);
+  transform: translateY(-1px);
+}
+.btn-share.whatsapp:hover {
+  border-color: #25D366;
+  color: #25D366;
+}
+.btn-share svg { width: 16px; height: 16px; }
+
+/* ========== FOOTER MyWish ========== */
+.footer-brand {
+  text-align: center;
+  margin-top: var(--s-12);
+  padding: var(--s-6) var(--s-4);
+  border-top: 1px solid var(--border);
+}
+.footer-brand-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+.footer-brand-text svg { width: 12px; height: 12px; color: var(--primary-soft); }
+.footer-cta {
+  margin-top: var(--s-3);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--primary-soft);
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px var(--s-3);
+  background: var(--primary-bg);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--r-full);
+  transition: all var(--t-fast);
+}
+.footer-cta:hover {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+.footer-cta svg { width: 12px; height: 12px; }
+
+/* Responsive: tighten on small screens */
+@media (max-width: 380px) {
+  .wrap { padding: var(--s-4) var(--s-3) var(--s-12); }
+  .countdown-val { font-size: 24px; }
+  .hero-title { font-size: 32px; }
+  .avatar-grid { grid-template-columns: repeat(5, 1fr); }
+  .preset-row { grid-template-columns: repeat(4, 1fr); }
+  .preset:nth-child(5) { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== TOP NAV ========== -->
+<nav class="topnav">
+  <div class="topnav-content">
+    <a class="brand-mini" href="#">
+      <div class="brand-mini-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+      </div>
+      MyWish<span class="brand-mini-suffix">.ma</span>
+    </a>
+    <button class="icon-btn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ========== HERO ========== -->
+  <header class="hero">
+    <div class="hero-photo">
+      <span class="hero-photo-emoji">🎂</span>
+      <div class="hero-age-badge">8</div>
+    </div>
+
+    <div class="hero-eyebrow">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+      Le héros du jour
+    </div>
+
+    <h1 class="hero-title">
+      Les <span class="accent">8 ans</span><br>d'Ibrahim
+    </h1>
+
+    <div class="hero-meta">
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+        Dimanche 17 mai
+      </span>
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+        13h - 18h
+      </span>
+      <span class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        Casablanca
+      </span>
+    </div>
+
+    <!-- Countdown -->
+    <div class="countdown">
+      <div class="countdown-cell">
+        <div class="countdown-val">07</div>
+        <div class="countdown-lbl">Jours</div>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-val">14</div>
+        <div class="countdown-lbl">Heures</div>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-val">23</div>
+        <div class="countdown-lbl">Minutes</div>
+      </div>
+      <div class="countdown-cell">
+        <div class="countdown-val">42</div>
+        <div class="countdown-lbl">Secondes</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== INVITATION ========== -->
+  <section class="invitation">
+    <div class="invitation-text">Tu es invité·e !</div>
+    <div class="invitation-sub">Ibrahim sera tellement heureux de te voir pour fêter ses 8 ans 🎉</div>
+
+    <div class="rsvp-buttons">
+      <button class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        Je viens
+      </button>
+      <button class="btn btn-secondary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        Pas dispo
+      </button>
+    </div>
+
+    <div class="rsvp-summary">
+      <div class="rsvp-avatars">
+        <div class="rsvp-avatar">YK</div>
+        <div class="rsvp-avatar">SM</div>
+        <div class="rsvp-avatar">AB</div>
+        <div class="rsvp-avatar">RL</div>
+        <div class="rsvp-avatar more">+19</div>
+      </div>
+      <div class="rsvp-summary-text">
+        <strong>23 invités</strong> ont confirmé
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CAGNOTTE ========== -->
+  <section class="card">
+    <div class="section-header-block">
+      <div class="section-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+      </div>
+      <div>
+        <div class="section-title">Cagnotte PS5</div>
+      </div>
+    </div>
+    <p class="section-sub">Pas obligatoire — un coup de pouce pour la PlayStation 5 🎮</p>
+
+    <div class="target-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+      Objectif · 5 000 MAD
+    </div>
+
+    <!-- Quest animation Ibrahim → PS5 -->
+    <div class="quest">
+      <div class="quest-track">
+        <div class="quest-track-fill"></div>
+      </div>
+      <div class="quest-start">🎂</div>
+      <div class="quest-runner">🏃‍♂️</div>
+      <div class="quest-end">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><path d="M6 12h4M9 9v6M14.5 12h.01M17.5 12h.01"></path></svg>
+      </div>
+    </div>
+
+    <!-- Stats line -->
+    <div class="cagnotte-stats">
+      <div class="cag-stat">
+        <div class="cag-stat-val recolted">2 100</div>
+        <div class="cag-stat-lbl">Récolté</div>
+      </div>
+      <div class="cag-stat-sep"></div>
+      <div class="cag-stat">
+        <div class="cag-stat-val total">5 000</div>
+        <div class="cag-stat-lbl">Objectif</div>
+      </div>
+      <div class="cag-stat-sep"></div>
+      <div class="cag-stat">
+        <div class="cag-stat-val percent">42%</div>
+        <div class="cag-stat-lbl">Avance</div>
+      </div>
+    </div>
+
+    <div class="cag-divider"></div>
+
+    <h3 class="form-section-title">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary-soft);"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+      Ta participation
+      <span class="optional-tag">Optionnel</span>
+    </h3>
+
+    <div class="form-row">
+      <label>
+        <span class="step-num">1</span>
+        Choisis ton avatar Roblox
+      </label>
+      <div class="avatar-grid">
+        <div class="avatar-tile selected">
+          <span class="avatar-emoji">🦸</span>
+          <span class="avatar-name">Hero</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🥷</span>
+          <span class="avatar-name">Ninja</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🐉</span>
+          <span class="avatar-name">Dragon</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🧙</span>
+          <span class="avatar-name">Mage</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🤖</span>
+          <span class="avatar-name">Robot</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">👽</span>
+          <span class="avatar-name">Alien</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🐱</span>
+          <span class="avatar-name">Chat</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">👻</span>
+          <span class="avatar-name">Fantôme</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🦊</span>
+          <span class="avatar-name">Renard</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🦁</span>
+          <span class="avatar-name">Lion</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🐺</span>
+          <span class="avatar-name">Loup</span>
+        </div>
+        <div class="avatar-tile">
+          <span class="avatar-emoji">🦄</span>
+          <span class="avatar-name">Licorne</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>
+        <span class="step-num">2</span>
+        Mon montant
+      </label>
+      <div class="amt-row">
+        <input type="number" class="input" placeholder="200" value="200">
+        <span class="amt-currency">MAD</span>
+      </div>
+      <div class="preset-row">
+        <button class="preset">50</button>
+        <button class="preset">100</button>
+        <button class="preset">200</button>
+        <button class="preset">500</button>
+        <button class="preset">1000</button>
+      </div>
+    </div>
+
+    <button class="btn btn-primary btn-block btn-lg">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+      Ajouter ma participation
+    </button>
+  </section>
+
+  <!-- ========== TABS LIST ========== -->
+  <section class="card">
+    <div class="tabs">
+      <div class="tab active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+        Présents
+        <span class="count">12</span>
+      </div>
+      <div class="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        Confirmés
+        <span class="count">23</span>
+      </div>
+    </div>
+
+    <div class="contrib-list">
+      <div class="contrib-item">
+        <div class="contrib-avatar">🦸</div>
+        <div class="contrib-info">
+          <div class="contrib-name">Hero</div>
+          <div class="contrib-meta">il y a 2 heures</div>
+        </div>
+        <div class="contrib-amount">
+          <div class="contrib-amount-val">500 MAD</div>
+          <span class="badge badge-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Validé
+          </span>
+        </div>
+      </div>
+
+      <div class="contrib-item">
+        <div class="contrib-avatar">🥷</div>
+        <div class="contrib-info">
+          <div class="contrib-name">Ninja</div>
+          <div class="contrib-meta">il y a 5 heures</div>
+        </div>
+        <div class="contrib-amount">
+          <div class="contrib-amount-val">300 MAD</div>
+          <span class="badge badge-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Validé
+          </span>
+        </div>
+      </div>
+
+      <div class="contrib-item pending">
+        <div class="contrib-avatar">🐉</div>
+        <div class="contrib-info">
+          <div class="contrib-name">Dragon</div>
+          <div class="contrib-meta">il y a 1 heure</div>
+        </div>
+        <div class="contrib-amount">
+          <div class="contrib-amount-val pending">400 MAD</div>
+          <span class="badge badge-warning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            En attente
+          </span>
+        </div>
+      </div>
+
+      <div class="contrib-item">
+        <div class="contrib-avatar">🧙</div>
+        <div class="contrib-info">
+          <div class="contrib-name">Mage</div>
+          <div class="contrib-meta">il y a 1 jour</div>
+        </div>
+        <div class="contrib-amount">
+          <div class="contrib-amount-val">200 MAD</div>
+          <span class="badge badge-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Validé
+          </span>
+        </div>
+      </div>
+
+      <div class="contrib-item">
+        <div class="contrib-avatar">🤖</div>
+        <div class="contrib-info">
+          <div class="contrib-name">Robot</div>
+          <div class="contrib-meta">il y a 1 jour</div>
+        </div>
+        <div class="contrib-amount">
+          <div class="contrib-amount-val">300 MAD</div>
+          <span class="badge badge-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Validé
+          </span>
+        </div>
+      </div>
+
+      <div class="contrib-item">
+        <div class="contrib-avatar">👽</div>
+        <div class="contrib-info">
+          <div class="contrib-name">Alien</div>
+          <div class="contrib-meta">il y a 2 jours</div>
+        </div>
+        <div class="contrib-amount">
+          <div class="contrib-amount-val">200 MAD</div>
+          <span class="badge badge-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Validé
+          </span>
+        </div>
+      </div>
+
+      <div class="contrib-item pending">
+        <div class="contrib-avatar">🦊</div>
+        <div class="contrib-info">
+          <div class="contrib-name">Renard</div>
+          <div class="contrib-meta">il y a 3 jours</div>
+        </div>
+        <div class="contrib-amount">
+          <div class="contrib-amount-val pending">200 MAD</div>
+          <span class="badge badge-warning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            En attente
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Share buttons -->
+    <div class="share-row">
+      <button class="btn-share">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        Copier le lien
+      </button>
+      <button class="btn-share whatsapp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"></path></svg>
+        Partager
+      </button>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER MyWish branding ========== -->
+  <div class="footer-brand">
+    <div class="footer-brand-text">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+      Page créée sur <strong style="color: var(--text-secondary); margin-left: 4px;">MyWish.ma</strong>
+    </div>
+    <br>
+    <a href="#" class="footer-cta">
+      Crée la page de ton événement
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </a>
+  </div>
+
+</div>
+
+<script>
+// Avatar selection
+document.querySelectorAll('.avatar-tile').forEach(tile => {
+  tile.addEventListener('click', () => {
+    document.querySelectorAll('.avatar-tile').forEach(t => t.classList.remove('selected'));
+    tile.classList.add('selected');
+  });
+});
+
+// Tabs
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+  });
+});
+
+// Preset buttons fill input
+document.querySelectorAll('.preset').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const input = document.querySelector('.input[type="number"]');
+    if (input) input.value = btn.textContent.trim();
+  });
+});
+</script>
+
+</body>
+</html>

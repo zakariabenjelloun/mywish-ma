@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main, dev]
+  push:
+    branches: [main, dev]
+
+jobs:
+  php-syntax-check:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: pdo, pdo_mysql, mbstring, json, openssl, curl
+          coverage: none
+
+      - name: PHP version
+        run: php --version
+
+      - name: Lint all PHP files
+        run: |
+          ERRORS=0
+          for file in $(find src/ public/ -type f -name "*.php"); do
+            if ! php -l "$file" > /dev/null 2>&1; then
+              echo "❌ Syntax error in: $file"
+              php -l "$file"
+              ERRORS=$((ERRORS+1))
+            fi
+          done
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "Found $ERRORS PHP syntax errors"
+            exit 1
+          fi
+          echo "✅ All PHP files passed syntax check"
+
+      - name: Check for sensitive files
+        run: |
+          if git ls-files --error-unmatch .env 2>/dev/null; then
+            echo "❌ CRITICAL: .env is tracked by Git!"
+            exit 1
+          fi
+          echo "✅ No sensitive files in Git"
+
+      - name: Check for debug statements
+        run: |
+          DEBUG_FOUND=0
+          for pattern in "var_dump(" "dd(" "print_r("; do
+            RESULTS=$(grep -rn --include="*.php" -F "$pattern" src/ public/ 2>/dev/null | grep -v "//.*$pattern" || true)
+            if [ -n "$RESULTS" ]; then
+              echo "⚠️  Found '$pattern':"
+              echo "$RESULTS"
+              DEBUG_FOUND=1
+            fi
+          done
+          if [ "$DEBUG_FOUND" -eq 1 ]; then
+            echo "⚠️  Warning: debug statements found (won't fail CI, but please clean up)"
+          fi

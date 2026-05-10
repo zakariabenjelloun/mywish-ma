@@ -1,0 +1,60 @@
+/* ============================================================
+ * MyWish.ma — public/assets/css/app.css
+ * ============================================================
+ *
+ * THIS IS A PLACEHOLDER FILE.
+ *
+ * In Sprint 1, this file will be REPLACED by the compiled
+ * TailwindCSS output. The compilation runs LOCALLY (on your
+ * machine) via `npx tailwindcss`, and the resulting CSS is
+ * committed to Git so the cPanel server doesn't need Node.js.
+ *
+ * Setup (Sprint 1):
+ *   npm init -y
+ *   npm install -D tailwindcss
+ *   npx tailwindcss init
+ *   # Edit tailwind.config.js with design tokens from docs/DESIGN-SYSTEM.md
+ *   # Build CSS:
+ *   npx tailwindcss -i ./public/assets/css/app.src.css -o ./public/assets/css/app.css --minify
+ *
+ * Until Sprint 1, this placeholder loads minimal styles to make
+ * the bootstrap page look presentable.
+ * ============================================================ */
+
+/* Reset */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; padding: 0; }
+
+html { line-height: 1.5; -webkit-font-smoothing: antialiased; }
+body {
+    background: #0A0A0A;
+    color: #FAFAF9;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 100vh;
+}
+
+a { color: inherit; }
+
+/* Subtle background gradient */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(234, 88, 12, 0.15), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 30%, rgba(252, 211, 77, 0.06), transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Selection color */
+::selection {
+    background: rgba(234, 88, 12, 0.4);
+    color: #FAFAF9;
+}
+
+/* Tailwind-like utility class fallbacks (until Tailwind is compiled) */
+.bg-bg-deep { background: #0A0A0A; }
+.text-text-primary { color: #FAFAF9; }
+.font-body { font-family: 'Inter', sans-serif; }
+.antialiased { -webkit-font-smoothing: antialiased; }

@@ -1,0 +1,2038 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>MyWish.ma — La page de votre événement familial</title>
+<meta name="description" content="Khotba, anniversaire, mariage, naissance... Créez la page de votre événement familial en 5 minutes. Invitations, cagnotte et souvenirs sur un seul lien.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  --primary: #EA580C;
+  --primary-soft: #FB923C;
+  --primary-deep: #C2410C;
+  --primary-bg: rgba(234, 88, 12, 0.08);
+  --primary-border: rgba(234, 88, 12, 0.22);
+
+  --gold: #FCD34D;
+  --gold-soft: #FDE68A;
+
+  --bg-deep: #0A0A0A;
+  --bg-raised: #18181B;
+  --bg-high: #27272A;
+  --bg-overlay: rgba(255, 255, 255, 0.04);
+
+  --border: #2D2D30;
+  --border-strong: #3F3F46;
+
+  --text-primary: #FAFAF9;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --text-ghost: #52525B;
+
+  --success: #34D399;
+  --warning: #FBBF24;
+  --danger: #F87171;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px; --s-20: 80px; --s-24: 96px;
+
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px;
+  --r-xl: 20px; --r-2xl: 24px; --r-3xl: 32px;
+  --r-full: 999px;
+
+  --shadow-glow: 0 0 32px rgba(234, 88, 12, 0.3);
+  --shadow-glow-lg: 0 0 64px rgba(234, 88, 12, 0.4);
+  --shadow-gold-glow: 0 0 24px rgba(252, 211, 77, 0.25);
+  --shadow-deep: 0 24px 64px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+
+  --t-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-base: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --t-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+html, body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Decorative background gradient */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(234, 88, 12, 0.12), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 80% 30%, rgba(252, 211, 77, 0.05), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ========== NAV ========== */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+  padding: var(--s-4) var(--s-5);
+}
+.nav-content {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 19px;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.brand-icon {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-glow);
+  transition: box-shadow var(--t-base);
+}
+.brand:hover .brand-icon { box-shadow: var(--shadow-glow-lg); }
+.brand-icon svg { width: 18px; height: 18px; }
+
+.nav-links {
+  display: none;
+  gap: var(--s-6);
+  align-items: center;
+}
+.nav-links a {
+  color: var(--text-secondary);
+  font-size: 14px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--t-fast);
+  letter-spacing: -0.005em;
+}
+.nav-links a:hover { color: var(--text-primary); }
+@media (min-width: 880px) {
+  .nav-links { display: flex; }
+}
+
+/* ========== BUTTONS ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  font-family: var(--font-body);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: -0.005em;
+}
+.btn:active { transform: scale(0.98); }
+.btn svg { width: 16px; height: 16px; }
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.btn-primary:hover {
+  background: var(--primary-soft);
+  box-shadow: var(--shadow-glow-lg);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--bg-high);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn-secondary:hover {
+  background: var(--bg-overlay);
+  border-color: var(--primary);
+  color: var(--primary-soft);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+.btn-ghost:hover {
+  background: var(--bg-overlay);
+  color: var(--text-primary);
+}
+
+.btn-lg { padding: var(--s-4) var(--s-6); font-size: 15px; }
+.btn-xl { padding: var(--s-5) var(--s-8); font-size: 16px; font-weight: 700; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+/* ========== CONTAINER ========== */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--s-5);
+}
+
+/* ========== SECTION ========== */
+section { padding: var(--s-24) 0; position: relative; }
+@media (max-width: 640px) { section { padding: var(--s-16) 0; } }
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--primary-bg);
+  color: var(--primary-soft);
+  padding: 6px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s-4);
+  border: 1px solid var(--primary-border);
+}
+.section-eyebrow svg { width: 12px; height: 12px; }
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin-bottom: var(--s-4);
+  text-align: center;
+}
+.section-subtitle {
+  font-size: 17px;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin: 0 auto;
+  text-align: center;
+  line-height: 1.6;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: var(--s-12);
+}
+
+/* ========== HERO ========== */
+.hero {
+  padding: var(--s-12) 0 var(--s-20);
+  position: relative;
+}
+.hero-content {
+  display: grid;
+  gap: var(--s-12);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--s-16);
+  }
+}
+.hero-text { text-align: center; }
+@media (min-width: 1024px) { .hero-text { text-align: left; } }
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--bg-overlay);
+  backdrop-filter: blur(12px);
+  padding: 6px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-6);
+  border: 1px solid var(--border);
+}
+.hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--success);
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 7vw, 76px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+  color: var(--text-primary);
+  margin-bottom: var(--s-6);
+}
+.hero-title .accent {
+  background: linear-gradient(135deg, var(--primary-soft) 0%, var(--primary) 50%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  position: relative;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-8);
+  line-height: 1.6;
+  max-width: 520px;
+}
+@media (max-width: 640px) {
+  .hero-subtitle { font-size: 16px; margin-left: auto; margin-right: auto; }
+}
+
+.hero-types-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--s-3);
+}
+.hero-types {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--s-2);
+  margin-bottom: var(--s-8);
+}
+@media (min-width: 1024px) {
+  .hero-types { grid-template-columns: repeat(3, 1fr); }
+}
+.event-type {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-4) var(--s-3);
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--t-base);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-2);
+}
+.event-type:hover {
+  border-color: var(--primary);
+  background: var(--primary-bg);
+  color: var(--primary-soft);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(234, 88, 12, 0.15);
+}
+.event-type svg {
+  width: 24px;
+  height: 24px;
+  color: var(--primary-soft);
+  transition: color var(--t-base);
+}
+.event-type:hover svg { color: var(--primary); }
+
+.hero-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+  justify-content: center;
+}
+@media (min-width: 1024px) { .hero-cta-row { justify-content: flex-start; } }
+
+.hero-meta {
+  margin-top: var(--s-6);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-5);
+  justify-content: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+@media (min-width: 1024px) { .hero-meta { justify-content: flex-start; } }
+.hero-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.hero-meta-item svg {
+  width: 14px;
+  height: 14px;
+  color: var(--success);
+}
+
+/* ========== HERO MOCKUP (right side) ========== */
+.hero-mockup {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  padding: var(--s-8) 0;
+}
+.mockup-frame {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  background: linear-gradient(135deg, #1F1F23, #0F0F12);
+  border-radius: var(--r-3xl);
+  padding: var(--s-3);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset,
+    0 60px 120px rgba(0, 0, 0, 0.6),
+    0 24px 48px rgba(234, 88, 12, 0.15);
+  transform: rotate(-2deg) translateY(0);
+  animation: float-mockup 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  transition: transform var(--t-smooth);
+}
+@keyframes float-mockup {
+  0%, 100% { transform: rotate(-2deg) translateY(0); }
+  50% { transform: rotate(-2deg) translateY(-12px); }
+}
+.mockup-frame:hover {
+  transform: rotate(0deg) translateY(0);
+  animation: none;
+}
+.mockup-card {
+  background: var(--bg-deep);
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+.mockup-hero {
+  padding: var(--s-8) var(--s-5);
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.25), transparent 70%),
+    radial-gradient(circle at 50% 100%, rgba(252, 211, 77, 0.1), transparent 70%),
+    var(--bg-raised);
+  position: relative;
+  border-bottom: 1px solid var(--border);
+}
+.mockup-photo {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--s-4);
+  border-radius: var(--r-2xl);
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.3), rgba(252, 211, 77, 0.2));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  backdrop-filter: blur(8px);
+}
+.mockup-photo svg {
+  width: 36px;
+  height: 36px;
+  color: white;
+}
+.mockup-photo-badge {
+  position: absolute;
+  bottom: -6px;
+  right: -6px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  color: white;
+  border: 3px solid var(--bg-raised);
+  box-shadow: var(--shadow-glow);
+}
+.mockup-title {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--s-2);
+  color: var(--text-primary);
+}
+.mockup-meta {
+  display: flex;
+  justify-content: center;
+  gap: var(--s-3);
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-4);
+}
+.mockup-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.mockup-meta-item svg { width: 12px; height: 12px; }
+
+.mockup-target {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: rgba(252, 211, 77, 0.08);
+  padding: 5px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gold);
+  border: 1px solid rgba(252, 211, 77, 0.2);
+}
+.mockup-target svg { width: 12px; height: 12px; }
+
+.mockup-body { padding: var(--s-5); }
+.mockup-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-2);
+  margin-bottom: var(--s-4);
+}
+.mockup-stat {
+  text-align: center;
+  background: var(--bg-raised);
+  padding: var(--s-3) var(--s-2);
+  border-radius: var(--r-md);
+  border: 1px solid var(--border);
+}
+.mockup-stat-val {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.mockup-stat-val.highlight { color: var(--primary-soft); }
+.mockup-stat-lbl {
+  font-size: 9px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 2px;
+  font-weight: 600;
+}
+.mockup-progress {
+  height: 8px;
+  background: var(--bg-high);
+  border-radius: var(--r-full);
+  overflow: hidden;
+  margin-bottom: var(--s-4);
+}
+.mockup-progress-fill {
+  height: 100%;
+  width: 42%;
+  background: linear-gradient(90deg, var(--primary-deep), var(--primary), var(--gold));
+  border-radius: var(--r-full);
+  position: relative;
+  overflow: hidden;
+  animation: fill-bar 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+@keyframes fill-bar {
+  from { width: 0; }
+  to { width: 42%; }
+}
+.mockup-progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: shimmer 2.5s infinite;
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.mockup-btn {
+  width: 100%;
+  padding: var(--s-3);
+  background: var(--primary);
+  color: white;
+  border-radius: var(--r-md);
+  font-weight: 700;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-glow);
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.mockup-btn svg { width: 14px; height: 14px; }
+
+/* Floating decorations around mockup */
+.mockup-decor {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-soft);
+  box-shadow: var(--shadow-card);
+  z-index: 2;
+}
+.mockup-decor svg { width: 22px; height: 22px; }
+.mockup-decor.gold { color: var(--gold); }
+.mockup-decor-1 {
+  top: 5%;
+  right: 0;
+  animation: float-deco 5s ease-in-out infinite;
+}
+.mockup-decor-2 {
+  bottom: 25%;
+  left: -12px;
+  animation: float-deco 6s ease-in-out infinite 1.5s;
+}
+.mockup-decor-3 {
+  top: 50%;
+  right: -15px;
+  animation: float-deco 7s ease-in-out infinite 0.5s;
+}
+@keyframes float-deco {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(3deg); }
+}
+
+/* ========== SOCIAL PROOF ========== */
+.social-proof {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: var(--s-12) 0;
+  background: var(--bg-deep);
+}
+.social-proof-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-8);
+  align-items: center;
+}
+@media (min-width: 880px) {
+  .social-proof-content { grid-template-columns: auto 1fr; gap: var(--s-12); }
+}
+.social-stats {
+  display: flex;
+  gap: var(--s-6);
+  justify-content: center;
+}
+.social-stat-num {
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary-soft), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  letter-spacing: -0.025em;
+  line-height: 1;
+}
+.social-stat-lbl {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: var(--s-1);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+.testimonials {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-3);
+}
+@media (min-width: 720px) {
+  .testimonials { grid-template-columns: repeat(2, 1fr); }
+}
+.testimonial {
+  background: var(--bg-raised);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
+  border: 1px solid var(--border);
+  transition: all var(--t-base);
+}
+.testimonial:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-high);
+}
+.testimonial-stars {
+  display: flex;
+  gap: 2px;
+  margin-bottom: var(--s-3);
+}
+.testimonial-stars svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+  fill: var(--gold);
+}
+.testimonial-text {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.6;
+  margin-bottom: var(--s-4);
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.testimonial-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 13px;
+  font-family: var(--font-display);
+}
+.testimonial-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.testimonial-role {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ========== HOW IT WORKS ========== */
+.how { background: var(--bg-deep); }
+.steps {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-5);
+}
+@media (min-width: 880px) {
+  .steps { grid-template-columns: repeat(3, 1fr); }
+}
+.step {
+  background: var(--bg-raised);
+  border-radius: var(--r-2xl);
+  padding: var(--s-8);
+  border: 1px solid var(--border);
+  transition: all var(--t-base);
+  position: relative;
+  overflow: hidden;
+}
+.step::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.05), transparent 70%);
+  opacity: 0;
+  transition: opacity var(--t-smooth);
+}
+.step:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+.step:hover::before { opacity: 1; }
+.step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--primary-bg);
+  color: var(--primary-soft);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  margin-bottom: var(--s-5);
+}
+.step-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  border-radius: var(--r-lg);
+  margin-bottom: var(--s-5);
+  box-shadow: var(--shadow-glow);
+}
+.step-icon svg {
+  width: 26px;
+  height: 26px;
+  color: white;
+}
+.step-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: var(--s-3);
+  color: var(--text-primary);
+}
+.step-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ========== EXAMPLES ========== */
+.examples-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-5);
+}
+@media (min-width: 640px) {
+  .examples-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .examples-grid { grid-template-columns: repeat(4, 1fr); }
+}
+.example-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--t-base);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.example-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+.example-photo {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.example-photo.birthday {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(234, 88, 12, 0.4), transparent 60%),
+    radial-gradient(circle at 70% 70%, rgba(252, 211, 77, 0.2), transparent 60%),
+    var(--bg-high);
+}
+.example-photo.wedding {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(252, 211, 77, 0.3), transparent 60%),
+    radial-gradient(circle at 30% 70%, rgba(234, 88, 12, 0.25), transparent 60%),
+    var(--bg-high);
+}
+.example-photo.baby {
+  background:
+    radial-gradient(circle at 50% 30%, rgba(248, 113, 113, 0.25), transparent 60%),
+    radial-gradient(circle at 50% 70%, rgba(252, 211, 77, 0.2), transparent 60%),
+    var(--bg-high);
+}
+.example-photo.birth {
+  background:
+    radial-gradient(circle at 30% 50%, rgba(96, 165, 250, 0.2), transparent 60%),
+    radial-gradient(circle at 70% 50%, rgba(234, 88, 12, 0.2), transparent 60%),
+    var(--bg-high);
+}
+.example-icon-bg {
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--r-xl);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(12px);
+}
+.example-icon-bg svg {
+  width: 30px;
+  height: 30px;
+  color: white;
+}
+.example-tag {
+  position: absolute;
+  top: var(--s-3);
+  left: var(--s-3);
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 4px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 11px;
+  font-weight: 700;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  letter-spacing: 0.02em;
+}
+.example-body {
+  padding: var(--s-5);
+}
+.example-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s-2);
+  color: var(--text-primary);
+}
+.example-meta {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: var(--s-3);
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+}
+.example-meta svg { width: 12px; height: 12px; }
+.example-stats {
+  display: flex;
+  gap: var(--s-4);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.example-stat-bold {
+  color: var(--primary-soft);
+  font-weight: 700;
+}
+
+/* ========== FEATURES ========== */
+.features-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+}
+@media (min-width: 640px) {
+  .features-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .features-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.feature {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-6);
+  transition: all var(--t-base);
+}
+.feature:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  background: var(--bg-high);
+}
+.feature-icon {
+  width: 44px;
+  height: 44px;
+  background: var(--primary-bg);
+  color: var(--primary-soft);
+  border: 1px solid var(--primary-border);
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--s-4);
+  transition: all var(--t-base);
+}
+.feature-icon svg { width: 22px; height: 22px; }
+.feature:hover .feature-icon {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.feature-title {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s-2);
+  color: var(--text-primary);
+}
+.feature-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.feature-desc strong { color: var(--text-primary); }
+
+/* ========== PRICING ========== */
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+  max-width: 880px;
+  margin: 0 auto;
+}
+@media (min-width: 720px) {
+  .pricing-grid { grid-template-columns: 1fr 1fr; }
+}
+.pricing-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2xl);
+  padding: var(--s-8);
+  position: relative;
+  transition: all var(--t-base);
+}
+.pricing-card.featured {
+  border-color: var(--primary-border);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(234, 88, 12, 0.08), transparent 60%),
+    var(--bg-raised);
+  box-shadow: 0 0 48px rgba(234, 88, 12, 0.15);
+}
+.pricing-tag {
+  position: absolute;
+  top: -12px;
+  right: var(--s-6);
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  color: white;
+  padding: 5px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  box-shadow: var(--shadow-glow);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.pricing-tag svg { width: 12px; height: 12px; }
+.pricing-name {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: var(--s-3);
+  color: var(--text-primary);
+}
+.pricing-price {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s-2);
+  margin-bottom: var(--s-2);
+}
+.pricing-amount {
+  font-family: var(--font-display);
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.pricing-card.featured .pricing-amount {
+  background: linear-gradient(135deg, var(--primary-soft), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.pricing-currency {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.pricing-period {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.pricing-tagline {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: var(--s-6);
+  padding-bottom: var(--s-6);
+  border-bottom: 1px solid var(--border);
+}
+.pricing-features {
+  list-style: none;
+  margin-bottom: var(--s-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.pricing-features li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  font-size: 14px;
+  color: var(--text-primary);
+}
+.pricing-features li svg {
+  width: 18px;
+  height: 18px;
+  color: var(--success);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.pricing-features li strong { color: var(--text-primary); font-weight: 600; }
+.pricing-features li.disabled {
+  color: var(--text-ghost);
+  text-decoration: line-through;
+}
+.pricing-features li.disabled svg { color: var(--text-ghost); }
+.pricing-cta { width: 100%; }
+.pricing-note {
+  text-align: center;
+  margin-top: var(--s-8);
+  font-size: 13px;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.pricing-note-wrap { text-align: center; }
+.pricing-note svg {
+  width: 14px;
+  height: 14px;
+  color: var(--gold);
+}
+
+/* ========== FAQ ========== */
+.faq-list {
+  max-width: 760px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.faq-item {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  transition: all var(--t-base);
+}
+.faq-item:hover { border-color: var(--border-strong); }
+.faq-item[open] {
+  border-color: var(--primary-border);
+  background: var(--bg-high);
+}
+.faq-summary {
+  padding: var(--s-5) var(--s-6);
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-primary);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  list-style: none;
+  user-select: none;
+  letter-spacing: -0.005em;
+}
+.faq-summary::-webkit-details-marker { display: none; }
+.faq-summary-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--primary-bg);
+  border: 1px solid var(--primary-border);
+  color: var(--primary-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all var(--t-base);
+}
+.faq-summary-icon svg { width: 14px; height: 14px; }
+.faq-item[open] .faq-summary-icon {
+  background: var(--primary);
+  color: white;
+  transform: rotate(45deg);
+  box-shadow: var(--shadow-glow);
+}
+.faq-answer {
+  padding: 0 var(--s-6) var(--s-5);
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.faq-answer strong { color: var(--text-primary); font-weight: 600; }
+
+/* ========== FINAL CTA ========== */
+.cta-final {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(234, 88, 12, 0.15), transparent 70%),
+    var(--bg-deep);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.cta-final::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  pointer-events: none;
+}
+.cta-final-content {
+  position: relative;
+  text-align: center;
+}
+.cta-final h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+  margin-bottom: var(--s-5);
+}
+.cta-final h2 .accent {
+  background: linear-gradient(135deg, var(--primary-soft), var(--gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.cta-final p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 540px;
+  margin: 0 auto var(--s-8);
+  line-height: 1.6;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+  background: var(--bg-deep);
+  padding: var(--s-16) 0 var(--s-8);
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-8);
+  margin-bottom: var(--s-8);
+}
+@media (min-width: 720px) {
+  .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr; }
+}
+.footer-brand-block { max-width: 320px; }
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 19px;
+  margin-bottom: var(--s-4);
+  color: var(--text-primary);
+}
+.footer-tagline {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-4);
+}
+.footer-col a {
+  display: block;
+  color: var(--text-muted);
+  font-size: 14px;
+  text-decoration: none;
+  margin-bottom: var(--s-3);
+  transition: color var(--t-fast);
+}
+.footer-col a:hover { color: var(--primary-soft); }
+.footer-bottom {
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--s-4);
+  font-size: 13px;
+  color: var(--text-ghost);
+}
+.footer-bottom a {
+  color: var(--text-ghost);
+  text-decoration: none;
+  margin-left: var(--s-4);
+  transition: color var(--t-fast);
+}
+.footer-bottom a:hover { color: var(--primary-soft); }
+</style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav">
+  <div class="nav-content">
+    <a href="#" class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 12 20 22 4 22 4 12"></polyline>
+          <rect x="2" y="7" width="20" height="5"></rect>
+          <line x1="12" y1="22" x2="12" y2="7"></line>
+          <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+          <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+        </svg>
+      </div>
+      MyWish.ma
+    </a>
+    <div class="nav-links">
+      <a href="#how">Comment ça marche</a>
+      <a href="#examples">Exemples</a>
+      <a href="#pricing">Tarifs</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <button class="btn btn-primary">Créer ma page</button>
+  </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+
+      <div class="hero-text">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          🇲🇦 Conçu au Maroc, pour les familles marocaines
+        </div>
+
+        <h1 class="hero-title">
+          Khotba, anniversaire,<br>
+          mariage… <span class="accent">Tout sur un lien.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Créez la page de votre événement familial en 5 minutes : invitations, cagnotte et souvenirs sur un seul lien WhatsApp.
+        </p>
+
+        <div class="hero-types-label">Quel est votre événement ?</div>
+        <div class="hero-types">
+          <button class="event-type">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path><path d="M4 16s1-1 4-1 5 2 8 2 4-1 4-1"></path><path d="M2 21h20"></path><path d="M7 8v3"></path><path d="M12 8v3"></path><path d="M17 8v3"></path><path d="M7 4h.01"></path><path d="M12 4h.01"></path><path d="M17 4h.01"></path></svg>
+            Anniversaire
+          </button>
+          <button class="event-type">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89l1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path></svg>
+            Mariage
+          </button>
+          <button class="event-type">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+            Baby shower
+          </button>
+          <button class="event-type">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg>
+            Naissance
+          </button>
+          <button class="event-type">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            Autre
+          </button>
+        </div>
+
+        <div class="hero-cta-row">
+          <button class="btn btn-primary btn-xl">
+            Créer ma page gratuitement
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+          <button class="btn btn-secondary btn-lg">Voir un exemple</button>
+        </div>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Gratuit pour commencer
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Sans carte bancaire
+          </div>
+          <div class="hero-meta-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Prêt en 5 minutes
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-mockup">
+        <div class="mockup-decor mockup-decor-1">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+        </div>
+        <div class="mockup-decor mockup-decor-2 gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </div>
+        <div class="mockup-decor mockup-decor-3">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        </div>
+
+        <div class="mockup-frame">
+          <div class="mockup-card">
+            <div class="mockup-hero">
+              <div class="mockup-photo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path><path d="M4 16s1-1 4-1 5 2 8 2 4-1 4-1"></path><path d="M2 21h20"></path><path d="M7 8v3"></path><path d="M12 8v3"></path><path d="M17 8v3"></path><path d="M7 4h.01"></path><path d="M12 4h.01"></path><path d="M17 4h.01"></path></svg>
+                <div class="mockup-photo-badge">8</div>
+              </div>
+              <div class="mockup-title">Les 8 ans d'Ibrahim</div>
+              <div class="mockup-meta">
+                <span class="mockup-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  17 mai
+                </span>
+                <span class="mockup-meta-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  13h
+                </span>
+              </div>
+              <div class="mockup-target">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                Objectif PS5 · 5 000 MAD
+              </div>
+            </div>
+            <div class="mockup-body">
+              <div class="mockup-stats">
+                <div class="mockup-stat">
+                  <div class="mockup-stat-val">23</div>
+                  <div class="mockup-stat-lbl">Confirmés</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-val highlight">42%</div>
+                  <div class="mockup-stat-lbl">Avance</div>
+                </div>
+                <div class="mockup-stat">
+                  <div class="mockup-stat-val">7j</div>
+                  <div class="mockup-stat-lbl">Restants</div>
+                </div>
+              </div>
+              <div class="mockup-progress">
+                <div class="mockup-progress-fill"></div>
+              </div>
+              <button class="mockup-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+                Je participe
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== SOCIAL PROOF ========== -->
+<section class="social-proof">
+  <div class="container">
+    <div class="social-proof-content">
+      <div class="social-stats">
+        <div>
+          <div class="social-stat-num">1 200+</div>
+          <div class="social-stat-lbl">Événements</div>
+        </div>
+        <div>
+          <div class="social-stat-num">15k+</div>
+          <div class="social-stat-lbl">Invités</div>
+        </div>
+        <div>
+          <div class="social-stat-num">4.9★</div>
+          <div class="social-stat-lbl">Note</div>
+        </div>
+      </div>
+      <div class="testimonials">
+        <div class="testimonial">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div class="testimonial-text">"J'ai préparé l'anniv de mon fils en 10 minutes. Tous mes cousins ont confirmé directement, plus besoin de relancer sur WhatsApp."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">SB</div>
+            <div>
+              <div class="testimonial-name">Salma B.</div>
+              <div class="testimonial-role">Maman, Casablanca</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          </div>
+          <div class="testimonial-text">"Pour mon mariage, on a centralisé invitations + cagnotte voyage. Même mes cousins de Paris ont contribué facilement avec Wise."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">YK</div>
+            <div>
+              <div class="testimonial-name">Yasmine K.</div>
+              <div class="testimonial-role">Mariée, Rabat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== HOW IT WORKS ========== -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        Comment ça marche
+      </div>
+      <h2 class="section-title">3 étapes, 5 minutes</h2>
+      <p class="section-subtitle">De l'idée à la page partagée sur WhatsApp, c'est rapide et sans paperasse.</p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        </div>
+        <div class="step-title">Créez votre page</div>
+        <div class="step-desc">Choisissez le type d'événement, ajoutez une photo, fixez la date. C'est tout.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+        </div>
+        <div class="step-title">Partagez le lien</div>
+        <div class="step-desc">Un seul lien WhatsApp à envoyer à toute la famille. Plus de relances individuelles.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        </div>
+        <div class="step-title">Recevez & validez</div>
+        <div class="step-desc">Suivez les RSVP et la cagnotte en temps réel. Validez les paiements en un clic.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EXAMPLES ========== -->
+<section id="examples">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        Exemples réels
+      </div>
+      <h2 class="section-title">Inspirez-vous</h2>
+      <p class="section-subtitle">Découvrez des pages créées par notre communauté pour leurs événements familiaux.</p>
+    </div>
+
+    <div class="examples-grid">
+      <a href="#" class="example-card">
+        <div class="example-photo birthday">
+          <span class="example-tag">Anniversaire</span>
+          <div class="example-icon-bg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"></path><path d="M4 16s1-1 4-1 5 2 8 2 4-1 4-1"></path><path d="M2 21h20"></path><path d="M7 8v3"></path><path d="M12 8v3"></path><path d="M17 8v3"></path><path d="M7 4h.01"></path><path d="M12 4h.01"></path><path d="M17 4h.01"></path></svg>
+          </div>
+        </div>
+        <div class="example-body">
+          <div class="example-title">Les 8 ans d'Ibrahim</div>
+          <div class="example-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            17 mai · Casablanca
+          </div>
+          <div class="example-stats">
+            <span><strong class="example-stat-bold">23</strong> invités</span>
+            <span><strong class="example-stat-bold">42%</strong> cagnotte</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="example-card">
+        <div class="example-photo wedding">
+          <span class="example-tag">Mariage</span>
+          <div class="example-icon-bg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89l1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526"></path></svg>
+          </div>
+        </div>
+        <div class="example-body">
+          <div class="example-title">Yasmine & Karim</div>
+          <div class="example-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            12 sept · Marrakech
+          </div>
+          <div class="example-stats">
+            <span><strong class="example-stat-bold">187</strong> invités</span>
+            <span><strong class="example-stat-bold">68%</strong> cagnotte</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="example-card">
+        <div class="example-photo baby">
+          <span class="example-tag">Baby Shower</span>
+          <div class="example-icon-bg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          </div>
+        </div>
+        <div class="example-body">
+          <div class="example-title">Bienvenue Lina</div>
+          <div class="example-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            3 juin · Rabat
+          </div>
+          <div class="example-stats">
+            <span><strong class="example-stat-bold">42</strong> invités</span>
+            <span><strong class="example-stat-bold">15</strong> cadeaux</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="#" class="example-card">
+        <div class="example-photo birth">
+          <span class="example-tag">Sebou</span>
+          <div class="example-icon-bg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h.01"></path><path d="M15 12h.01"></path><path d="M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5"></path><path d="M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3c2 0 3.5 1.1 3.5 2.5s-.9 2.5-2 2.5c-.8 0-1.5-.4-1.5-1"></path></svg>
+          </div>
+        </div>
+        <div class="example-body">
+          <div class="example-title">Sebou de Mehdi</div>
+          <div class="example-meta">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+            28 mai · Fès
+          </div>
+          <div class="example-stats">
+            <span><strong class="example-stat-bold">56</strong> invités</span>
+            <span><strong class="example-stat-bold">85%</strong> cagnotte</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FEATURES ========== -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        Fonctionnalités
+      </div>
+      <h2 class="section-title">Tout ce qu'il vous faut</h2>
+      <p class="section-subtitle">Une page complète qui remplace 5 outils différents : Doodle, Cagnotte, WhatsApp, Trello, Google Form.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><polyline points="9 16 11 18 15 14"></polyline></svg>
+        </div>
+        <div class="feature-title">RSVP simplifié</div>
+        <div class="feature-desc">Vos invités confirment en un clic. Plus besoin de relancer 50 personnes individuellement sur WhatsApp.</div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"></rect><circle cx="12" cy="12" r="2"></circle><path d="M6 12h.01M18 12h.01"></path></svg>
+        </div>
+        <div class="feature-title">Cagnotte transparente</div>
+        <div class="feature-desc">Cash, virement, CashPlus, Wise pour la diaspora. <strong>MyWish ne touche jamais à votre argent</strong>.</div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+        </div>
+        <div class="feature-title">Wishlist intelligente</div>
+        <div class="feature-desc">Liste de cadeaux avec réservation. Plus de doublons, plus de "qui offre quoi" qui se demande.</div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"></rect><rect x="15" y="3" width="6" height="6" rx="1"></rect><rect x="3" y="15" width="6" height="6" rx="1"></rect><path d="M15 15h2v2h-2zM19 15h2v2h-2zM15 19h2v2h-2zM19 19h2v2h-2z"></path></svg>
+        </div>
+        <div class="feature-title">QR code & WhatsApp</div>
+        <div class="feature-desc">Partagez par WhatsApp ou imprimez un QR code pour vos cartes d'invitation papier.</div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        </div>
+        <div class="feature-title">Privé & sécurisé</div>
+        <div class="feature-desc">Lecture publique pour partager, mais détails sensibles (RIB, contributions) protégés par code.</div>
+      </div>
+
+      <div class="feature">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+        </div>
+        <div class="feature-title">Tableau de bord</div>
+        <div class="feature-desc">Suivez RSVP, cagnotte et partages en temps réel. Validez les paiements reçus en un clic.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PRICING ========== -->
+<section id="pricing">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        Tarifs
+      </div>
+      <h2 class="section-title">Simple et transparent</h2>
+      <p class="section-subtitle">Commencez gratuitement. Passez en Premium uniquement si vous en avez besoin.</p>
+    </div>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-name">Gratuit</div>
+        <div class="pricing-price">
+          <div class="pricing-amount">0</div>
+          <div class="pricing-currency">MAD</div>
+          <div class="pricing-period">/ pour toujours</div>
+        </div>
+        <div class="pricing-tagline">Parfait pour les petits événements familiaux.</div>
+        <ul class="pricing-features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Jusqu'à <strong>15 invités</strong>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            4 types de cagnottes
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Wishlist illimitée
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            RSVP & validation paiements
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Templates de base
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Partage WhatsApp + QR code
+          </li>
+          <li class="disabled">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Lien personnalisé
+          </li>
+          <li class="disabled">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            Invités illimités
+          </li>
+        </ul>
+        <button class="btn btn-secondary btn-lg pricing-cta">Commencer gratuitement</button>
+      </div>
+
+      <div class="pricing-card featured">
+        <div class="pricing-tag">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+          Recommandé
+        </div>
+        <div class="pricing-name">Premium</div>
+        <div class="pricing-price">
+          <div class="pricing-amount">99</div>
+          <div class="pricing-currency">MAD</div>
+          <div class="pricing-period">/ par événement</div>
+        </div>
+        <div class="pricing-tagline">Pour les mariages, fêtes nombreuses et besoins pro.</div>
+        <ul class="pricing-features">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <strong>Invités illimités</strong>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            <strong>Lien personnalisé</strong> (mywish.ma/votre-event)
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            4 types de cagnottes
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Wishlist illimitée
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Tous les templates premium
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            RSVP & validation paiements
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Partage WhatsApp + QR code
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Page archivée 1 an
+          </li>
+        </ul>
+        <button class="btn btn-primary btn-lg pricing-cta">Créer ma page Premium</button>
+      </div>
+    </div>
+
+    <div class="pricing-note-wrap">
+      <div class="pricing-note">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+        <strong style="color:var(--text-primary);">Pas de commission</strong>&nbsp;sur votre cagnotte · Paiement unique · Facture TVA fournie
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FAQ ========== -->
+<section id="faq">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+        Questions fréquentes
+      </div>
+      <h2 class="section-title">Tout ce que vous voulez savoir</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <span>MyWish prend-il une commission sur l'argent de la cagnotte ?</span>
+          <span class="faq-summary-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          <strong>Non, jamais.</strong> MyWish ne touche jamais à l'argent de votre cagnotte. Vos invités vous paient directement par les moyens que vous choisissez (cash, virement RIB, CashPlus, Wise, PayPal). Nous fournissons uniquement la page web qui centralise les promesses de don et les preuves de paiement.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <span>Comment mes invités contribuent-ils à la cagnotte ?</span>
+          <span class="faq-summary-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          Vos invités cliquent sur "Je participe", choisissent un montant et le moyen de paiement (cash, RIB, CashPlus, Wise…). Ils paient directement vers vous, puis téléversent une <strong>preuve de paiement</strong> sur la page. Vous validez la contribution en un clic depuis votre tableau de bord.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <span>Combien de temps faut-il pour créer une page ?</span>
+          <span class="faq-summary-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          <strong>5 minutes maximum</strong> pour une page basique. Connexion Google, choix du type d'événement, infos clés (nom, date, lieu) et c'est en ligne. Vous pouvez ensuite enrichir : photos, cagnotte, wishlist, message personnalisé.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <span>Mes données et celles de mes invités sont-elles protégées ?</span>
+          <span class="faq-summary-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          Oui. Les <strong>infos générales</strong> (date, lieu, photo) sont visibles avec le lien. Les <strong>infos sensibles</strong> (liste invités, contributions, RIB) ne sont visibles qu'après authentification + saisie du code événement. Vos données ne sont ni vendues ni partagées avec des tiers.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <span>Combien de temps ma page reste-t-elle en ligne ?</span>
+          <span class="faq-summary-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          <strong>30 jours</strong> en version gratuite. <strong>90 jours + 1 an d'archive consultable</strong> en version Premium. Vous pouvez prolonger à tout moment depuis le tableau de bord.
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary class="faq-summary">
+          <span>Puis-je modifier mon événement après publication ?</span>
+          <span class="faq-summary-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          </span>
+        </summary>
+        <div class="faq-answer">
+          Bien sûr. Vous pouvez éditer toutes les infos (date, lieu, message, photos…) à tout moment. Si vous changez la date ou le lieu, <strong>les invités déjà confirmés reçoivent automatiquement un email</strong> avec la mise à jour.
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="cta-final">
+  <div class="container">
+    <div class="cta-final-content">
+      <h2>Prêt à <span class="accent">créer votre page</span> ?</h2>
+      <p>5 minutes suffisent. Gratuit pour commencer. Sans carte bancaire ni paperasse.</p>
+      <button class="btn btn-primary btn-xl">
+        Créer ma page gratuitement
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand-block">
+        <div class="footer-brand">
+          <div class="brand-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"></polyline><rect x="2" y="7" width="20" height="5"></rect><line x1="12" y1="22" x2="12" y2="7"></line><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path></svg>
+          </div>
+          MyWish.ma
+        </div>
+        <div class="footer-tagline">
+          La page de votre événement familial. Conçu au Maroc, pour les familles marocaines et la diaspora.
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Produit</h4>
+        <a href="#how">Comment ça marche</a>
+        <a href="#examples">Exemples</a>
+        <a href="#pricing">Tarifs</a>
+        <a href="#">Devenir partenaire</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#faq">FAQ</a>
+        <a href="#">Contact</a>
+        <a href="#">Centre d'aide</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Légal</h4>
+        <a href="#">CGU</a>
+        <a href="#">Confidentialité</a>
+        <a href="#">Mentions légales</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 MyWish.ma · Tous droits réservés</div>
+      <div>
+        <a href="#">Instagram</a>
+        <a href="#">WhatsApp</a>
+        <a href="#">TikTok</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Event type buttons feedback
+document.querySelectorAll('.event-type').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.style.transform = 'scale(0.95)';
+    setTimeout(() => { btn.style.transform = ''; }, 150);
+  });
+});
+
+// FAQ accordion behavior
+document.querySelectorAll('.faq-item').forEach(item => {
+  item.addEventListener('toggle', () => {
+    if (item.open) {
+      document.querySelectorAll('.faq-item').forEach(other => {
+        if (other !== item) other.open = false;
+      });
+    }
+  });
+});
+</script>
+
+</body>
+</html>

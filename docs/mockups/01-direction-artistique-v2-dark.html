@@ -1,0 +1,1966 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0A0A0A">
+<title>MyWish.ma — Direction Artistique v2 (Dark Premium)</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+:root {
+  /* Brand */
+  --primary: #EA580C;
+  --primary-soft: #FB923C;
+  --primary-deep: #C2410C;
+  --accent-gold: #FCD34D;
+  --accent-gold-soft: #FDE68A;
+
+  /* Backgrounds (warm dark) */
+  --bg-deep: #0A0A0A;
+  --bg-raised: #18181B;
+  --bg-high: #27272A;
+  --bg-glow: rgba(234, 88, 12, 0.08);
+
+  /* Borders */
+  --border: #2D2D30;
+  --border-strong: #3F3F46;
+  --border-bright: #52525B;
+
+  /* Text */
+  --text-primary: #FAFAF9;
+  --text-secondary: #A1A1AA;
+  --text-muted: #71717A;
+  --text-dim: #52525B;
+
+  /* Semantic */
+  --success: #34D399;
+  --success-bg: rgba(52, 211, 153, 0.1);
+  --warning: #FBBF24;
+  --warning-bg: rgba(251, 191, 36, 0.1);
+  --danger: #F87171;
+  --danger-bg: rgba(248, 113, 113, 0.1);
+
+  /* Spacing */
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px;
+  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --s-12: 48px; --s-16: 64px; --s-20: 80px;
+
+  /* Radius (modern) */
+  --r-sm: 8px;  --r-md: 12px; --r-lg: 16px;
+  --r-xl: 20px; --r-2xl: 24px; --r-3xl: 32px;
+  --r-full: 999px;
+
+  /* Shadows (deep) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 0 1px rgba(234, 88, 12, 0.3), 0 8px 24px rgba(234, 88, 12, 0.2);
+  --shadow-glow-strong: 0 0 0 2px rgba(234, 88, 12, 0.4), 0 12px 40px rgba(234, 88, 12, 0.35);
+
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'SF Mono', Menlo, Monaco, monospace;
+}
+
+html, body {
+  font-family: var(--font-body);
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+/* Subtle warm glow background */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; height: 100vh;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(234, 88, 12, 0.08), transparent 70%),
+    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(252, 211, 77, 0.04), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ======== TOP NAV ======== */
+.nav {
+  background: rgba(10, 10, 10, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: var(--s-4) var(--s-5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text-primary);
+  text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.brand-mark {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-soft));
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.nav-tag {
+  background: var(--bg-raised);
+  color: var(--text-secondary);
+  padding: 6px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.nav-tag-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--primary);
+}
+
+/* ======== CONTAINER ======== */
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: var(--s-12) var(--s-5);
+  position: relative;
+  z-index: 1;
+}
+
+/* ======== HERO ======== */
+.hero {
+  text-align: center;
+  padding: var(--s-12) 0 var(--s-16);
+  position: relative;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--bg-raised);
+  border: 1px solid var(--border-strong);
+  padding: 6px var(--s-4);
+  border-radius: var(--r-full);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-6);
+}
+.hero-badge svg { color: var(--primary); }
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: var(--s-5);
+  color: var(--text-primary);
+}
+.hero h1 .accent {
+  background: linear-gradient(135deg, var(--primary-soft) 0%, var(--primary) 50%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+@media (max-width: 640px) {
+  .hero h1 { font-size: 40px; letter-spacing: -0.03em; }
+  .hero p { font-size: 16px; }
+}
+
+/* ======== TOC ======== */
+.toc {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-3);
+  margin-bottom: var(--s-16);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-1);
+}
+.toc-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding: var(--s-2) var(--s-3);
+  border-radius: var(--r-md);
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+.toc-item:hover {
+  background: var(--bg-high);
+  color: var(--text-primary);
+}
+.toc-item-num {
+  width: 22px;
+  height: 22px;
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* ======== SECTION ======== */
+.section {
+  margin-bottom: var(--s-20);
+  scroll-margin-top: 100px;
+}
+.section-header {
+  margin-bottom: var(--s-8);
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+}
+.section-num {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-deep));
+  color: white;
+  border-radius: var(--r-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-glow);
+}
+.section-title-block { flex: 1; min-width: 0; }
+.section h2 {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--text-primary);
+}
+.section-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 6px;
+}
+
+/* ======== SWATCHES ======== */
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s-4);
+  margin-bottom: var(--s-8);
+}
+.swatch {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.swatch:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-bright);
+  box-shadow: var(--shadow-md);
+}
+.swatch-color {
+  height: 110px;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--s-3);
+}
+.swatch-color::after {
+  content: 'TAP TO COPY';
+  position: absolute;
+  top: var(--s-3);
+  right: var(--s-3);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 3px 7px;
+  border-radius: var(--r-sm);
+  opacity: 0;
+  transition: opacity 0.2s;
+  font-family: var(--font-mono);
+}
+.swatch:hover .swatch-color::after { opacity: 1; }
+.swatch-info {
+  padding: var(--s-3) var(--s-4);
+  background: var(--bg-raised);
+}
+.swatch-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.swatch-hex {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
+.swatch-usage {
+  font-size: 11px;
+  color: var(--text-dim);
+  margin-top: 4px;
+}
+
+.color-group {
+  margin-bottom: var(--s-8);
+}
+.color-group-title {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+}
+.color-group-title::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--border-strong);
+}
+
+/* Specific colors for swatches */
+.bg-primary { background: #EA580C; }
+.bg-primary-soft { background: #FB923C; }
+.bg-primary-deep { background: #C2410C; }
+.bg-gold { background: #FCD34D; }
+.bg-gold-soft { background: #FDE68A; }
+.bg-deep-c { background: #0A0A0A; border: 1px solid #2D2D30; }
+.bg-raised-c { background: #18181B; border: 1px solid #2D2D30; }
+.bg-high-c { background: #27272A; }
+.bg-border-c { background: #2D2D30; }
+.bg-border-strong-c { background: #3F3F46; }
+.bg-text-primary { background: #FAFAF9; }
+.bg-text-secondary { background: #A1A1AA; }
+.bg-text-muted { background: #71717A; }
+.bg-success { background: #34D399; }
+.bg-warning { background: #FBBF24; }
+.bg-danger { background: #F87171; }
+
+/* ======== PROPORTION DEMO ======== */
+.proportion-demo {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-6);
+}
+.proportion-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: var(--s-4);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.proportion-bar {
+  display: flex;
+  height: 56px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-bottom: var(--s-4);
+  border: 1px solid var(--border);
+}
+.proportion-segment {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.prop-neutrals { flex: 80; background: linear-gradient(90deg, #18181B, #27272A); color: var(--text-secondary); }
+.prop-primary { flex: 15; background: linear-gradient(90deg, #FB923C, #EA580C); color: white; }
+.prop-accent { flex: 5; background: var(--accent-gold); color: #0A0A0A; }
+.prop-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+.prop-legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.prop-legend-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 4px;
+}
+
+/* ======== TYPOGRAPHIES ======== */
+.typo-grid { display: grid; gap: var(--s-3); }
+.typo-row {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-4);
+  flex-wrap: wrap;
+  transition: all 0.2s;
+}
+.typo-row:hover { border-color: var(--border-strong); }
+.typo-sample { flex: 1; min-width: 220px; }
+.typo-meta {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  background: var(--bg-deep);
+  padding: 6px var(--s-3);
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+  border: 1px solid var(--border);
+}
+.typo-display { font-family: var(--font-display); font-size: 64px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.typo-h1 { font-family: var(--font-display); font-size: 44px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; }
+.typo-h2 { font-family: var(--font-display); font-size: 32px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+.typo-h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; letter-spacing: -0.015em; }
+.typo-body { font-size: 15px; line-height: 1.6; color: var(--text-primary); }
+.typo-small { font-size: 13px; color: var(--text-secondary); }
+.typo-tiny { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+
+/* ======== ICONS GALLERY ======== */
+.icon-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: var(--s-3);
+}
+.icon-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-4);
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.icon-card:hover {
+  background: var(--bg-high);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+.icon-card svg {
+  width: 28px;
+  height: 28px;
+  color: var(--primary-soft);
+  stroke-width: 1.75;
+  margin: 0 auto var(--s-2);
+  display: block;
+  transition: color 0.2s;
+}
+.icon-card:hover svg { color: var(--primary); }
+.icon-name {
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+}
+
+/* ======== COMPONENTS ======== */
+.cmp-grid {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .cmp-grid { grid-template-columns: 1fr 1fr; }
+}
+.cmp-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: var(--s-6);
+}
+.cmp-label {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: var(--s-4);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.cmp-label::before {
+  content: '';
+  width: 12px;
+  height: 1px;
+  background: var(--border-strong);
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--r-md);
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: var(--font-body);
+  -webkit-appearance: none;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+.btn svg { width: 16px; height: 16px; stroke-width: 2; }
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-glow);
+}
+.btn-primary:hover {
+  background: var(--primary-soft);
+  box-shadow: var(--shadow-glow-strong);
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: var(--bg-high);
+  color: var(--text-primary);
+  border-color: var(--border-strong);
+}
+.btn-secondary:hover {
+  background: var(--bg-raised);
+  border-color: var(--border-bright);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+.btn-ghost:hover {
+  background: var(--bg-high);
+  color: var(--text-primary);
+}
+
+.btn-danger {
+  background: var(--bg-high);
+  color: var(--danger);
+  border-color: var(--border-strong);
+}
+.btn-danger:hover {
+  background: var(--danger-bg);
+  border-color: var(--danger);
+}
+
+.btn-lg { padding: var(--s-4) var(--s-6); font-size: 15px; }
+.btn-xl { padding: var(--s-5) var(--s-8); font-size: 16px; font-weight: 700; }
+.btn-sm { padding: var(--s-2) var(--s-3); font-size: 13px; }
+
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s-3); }
+
+/* Inputs */
+.input-group { display: grid; gap: var(--s-4); }
+.input-row label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--s-2);
+}
+.input {
+  width: 100%;
+  padding: var(--s-3) var(--s-4);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--r-md);
+  font-size: 15px;
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  transition: all 0.15s;
+  -webkit-appearance: none;
+  outline: none;
+}
+.input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.15);
+}
+.input::placeholder { color: var(--text-muted); }
+.input-with-icon { position: relative; }
+.input-icon {
+  position: absolute;
+  left: var(--s-4);
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.input-icon svg { width: 18px; height: 18px; stroke-width: 1.75; }
+.input-with-icon .input { padding-left: 46px; }
+.input-help {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: var(--s-2);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+.badge svg { width: 12px; height: 12px; stroke-width: 2.5; }
+.badge-primary { background: rgba(234, 88, 12, 0.15); color: var(--primary-soft); border-color: rgba(234, 88, 12, 0.3); }
+.badge-success { background: var(--success-bg); color: var(--success); border-color: rgba(52, 211, 153, 0.3); }
+.badge-warning { background: var(--warning-bg); color: var(--warning); border-color: rgba(251, 191, 36, 0.3); }
+.badge-danger { background: var(--danger-bg); color: var(--danger); border-color: rgba(248, 113, 113, 0.3); }
+.badge-neutral { background: var(--bg-high); color: var(--text-secondary); border-color: var(--border); }
+.badge-gold { background: rgba(252, 211, 77, 0.12); color: var(--accent-gold); border-color: rgba(252, 211, 77, 0.3); }
+.badge-row { display: flex; gap: var(--s-2); flex-wrap: wrap; }
+
+/* Progress */
+.progress-card { padding: var(--s-5); }
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: var(--s-3);
+}
+.progress-current {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.progress-of {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+.progress-track {
+  height: 10px;
+  background: var(--bg-high);
+  border-radius: var(--r-full);
+  overflow: hidden;
+  position: relative;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-soft), var(--primary), var(--accent-gold));
+  border-radius: var(--r-full);
+  position: relative;
+  width: 42%;
+}
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmer 2.5s infinite;
+}
+@keyframes shimmer {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(200%); }
+}
+
+/* ======== EXAMPLE: EVENT CARD ======== */
+.example-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-6);
+}
+@media (min-width: 768px) {
+  .example-grid { grid-template-columns: 1fr 1fr; }
+}
+
+.event-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2xl);
+  overflow: hidden;
+  transition: all 0.25s;
+  cursor: pointer;
+}
+.event-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-bright);
+  box-shadow: var(--shadow-lg);
+}
+.event-photo {
+  height: 180px;
+  background: linear-gradient(135deg, #C2410C 0%, #EA580C 50%, #FCD34D 100%);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--s-5);
+  overflow: hidden;
+}
+.event-photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top right, rgba(0,0,0,0), rgba(0,0,0,0.3));
+}
+.event-photo-icon {
+  position: absolute;
+  top: var(--s-5);
+  left: var(--s-5);
+  width: 56px;
+  height: 56px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--r-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.event-photo-icon svg { width: 28px; height: 28px; stroke-width: 1.75; }
+.event-tag {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  color: white;
+  padding: 5px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 12px;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+.event-body {
+  padding: var(--s-5);
+}
+.event-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 700;
+  margin-bottom: var(--s-2);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+.event-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-4);
+}
+.event-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.event-meta-item svg { width: 14px; height: 14px; stroke-width: 2; color: var(--text-muted); }
+.event-stats {
+  display: flex;
+  justify-content: space-between;
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  gap: var(--s-3);
+}
+.event-stat {
+  flex: 1;
+  text-align: center;
+}
+.event-stat-val {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+.event-stat-lbl {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+  font-weight: 600;
+}
+
+/* ======== TAB BAR (mobile) ======== */
+.tabbar-demo {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-2xl);
+  padding: var(--s-4);
+  max-width: 380px;
+  margin: 0 auto;
+}
+.phone-frame {
+  background: var(--bg-deep);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--r-3xl);
+  overflow: hidden;
+  position: relative;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+}
+.phone-content {
+  flex: 1;
+  background: linear-gradient(180deg, #18181B 0%, #0A0A0A 100%);
+  padding: var(--s-5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.tabbar {
+  display: flex;
+  background: rgba(24, 24, 27, 0.85);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid var(--border);
+  padding: var(--s-3) var(--s-4) calc(var(--s-3) + 8px);
+  justify-content: space-around;
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color 0.2s;
+  padding: 6px var(--s-3);
+}
+.tab-item.active { color: var(--primary); }
+.tab-item:hover { color: var(--text-primary); }
+.tab-item svg { width: 22px; height: 22px; stroke-width: 1.75; }
+.tab-item-label {
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* ======== ANIMATIONS DEMO ======== */
+.anim-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--s-4);
+}
+.anim-card {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-6);
+  text-align: center;
+  transition: all 0.2s;
+}
+.anim-card:hover { border-color: var(--border-bright); }
+.anim-stage {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--s-3);
+}
+.anim-stage svg { color: var(--primary-soft); stroke-width: 1.75; }
+.anim-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+.anim-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+.anim-fade { animation: smooth-fade 3s ease-in-out infinite; }
+.anim-scale { animation: smooth-scale 2.5s ease-in-out infinite; }
+.anim-slide { animation: smooth-slide 3s ease-in-out infinite; }
+.anim-glow { animation: smooth-glow 2s ease-in-out infinite; }
+@keyframes smooth-fade {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+@keyframes smooth-scale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+@keyframes smooth-slide {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes smooth-glow {
+  0%, 100% { filter: drop-shadow(0 0 0 transparent); }
+  50% { filter: drop-shadow(0 0 12px rgba(234, 88, 12, 0.6)); }
+}
+
+/* ======== BEFORE/AFTER ======== */
+.compare-grid {
+  display: grid;
+  gap: var(--s-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .compare-grid { grid-template-columns: 1fr 1fr; }
+}
+.compare-item {
+  border-radius: var(--r-2xl);
+  padding: var(--s-6);
+  position: relative;
+  border: 1px solid var(--border);
+}
+.compare-before {
+  background: linear-gradient(135deg, rgba(255, 229, 241, 0.05), rgba(255, 244, 214, 0.03), rgba(229, 244, 255, 0.05));
+  border-color: rgba(219, 39, 119, 0.2);
+}
+.compare-after {
+  background: var(--bg-raised);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-glow);
+}
+.compare-label {
+  position: absolute;
+  top: -12px;
+  left: var(--s-5);
+  padding: 4px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-family: var(--font-mono);
+}
+.compare-before .compare-label {
+  background: #DB2777;
+  color: white;
+}
+.compare-after .compare-label {
+  background: var(--primary);
+  color: white;
+}
+.compare-content {
+  border-radius: var(--r-md);
+  padding: var(--s-5);
+  margin-top: var(--s-3);
+}
+.compare-issues {
+  margin-top: var(--s-4);
+  font-size: 12px;
+  color: var(--text-secondary);
+  list-style: none;
+}
+.compare-issues li {
+  margin-bottom: 6px;
+  display: flex;
+  gap: var(--s-2);
+  align-items: flex-start;
+}
+.compare-issues li svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  stroke-width: 2.5;
+}
+.compare-before .compare-issues li svg { color: var(--danger); }
+.compare-after .compare-issues li svg { color: var(--success); }
+
+.preview-old {
+  background: linear-gradient(135deg, #FFE5F1, #FFF4D6, #E5F4FF);
+  border-radius: var(--r-md);
+  padding: var(--s-4);
+  text-align: center;
+}
+.preview-old-banner {
+  font-size: 24px;
+  line-height: 1;
+  margin-bottom: var(--s-2);
+}
+.preview-old-title {
+  background: linear-gradient(90deg, #FF6B9D, #FFC93C, #6BCB77, #4D96FF);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  font-size: 18px;
+}
+.preview-old-sub {
+  font-size: 12px;
+  color: #5F5E5A;
+  margin-top: 4px;
+}
+
+.preview-new {
+  background: var(--bg-deep);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-5);
+  text-align: center;
+}
+.preview-new-icon {
+  display: inline-flex;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--primary-deep), var(--primary), var(--accent-gold));
+  border-radius: var(--r-md);
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: var(--s-3);
+}
+.preview-new-icon svg { width: 24px; height: 24px; stroke-width: 1.75; }
+.preview-new-title {
+  font-family: var(--font-display);
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+.preview-new-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.preview-new-tag {
+  display: inline-flex;
+  margin-top: var(--s-3);
+  background: rgba(234, 88, 12, 0.15);
+  color: var(--primary-soft);
+  padding: 4px var(--s-3);
+  border-radius: var(--r-full);
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid rgba(234, 88, 12, 0.3);
+}
+
+/* ======== CALLOUT ======== */
+.callout {
+  background: linear-gradient(135deg, rgba(234, 88, 12, 0.08), rgba(252, 211, 77, 0.04));
+  border: 1px solid rgba(234, 88, 12, 0.2);
+  border-radius: var(--r-xl);
+  padding: var(--s-6);
+  margin-top: var(--s-6);
+}
+.callout-title {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary-soft);
+  margin-bottom: var(--s-3);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.callout-title svg { width: 18px; height: 18px; stroke-width: 2; }
+.callout-body {
+  font-size: 14px;
+  color: var(--text-primary);
+  line-height: 1.7;
+}
+.callout-body strong { color: var(--accent-gold); }
+.callout-body em { font-style: italic; color: var(--text-secondary); }
+
+/* ======== FOOTER ======== */
+.footer {
+  text-align: center;
+  padding: var(--s-12) var(--s-5);
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border);
+  margin-top: var(--s-12);
+  position: relative;
+  z-index: 1;
+}
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--s-2);
+}
+.footer-brand .brand-mark { width: 24px; height: 24px; }
+.footer-brand .brand-mark svg { width: 14px; height: 14px; }
+
+/* ======== TOAST ======== */
+.toast {
+  position: fixed;
+  bottom: var(--s-6);
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--bg-raised);
+  color: var(--text-primary);
+  border: 1px solid var(--border-strong);
+  padding: var(--s-3) var(--s-5);
+  border-radius: var(--r-full);
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s;
+  pointer-events: none;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.toast svg { width: 16px; height: 16px; color: var(--success); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .typo-display { font-size: 44px; }
+  .typo-h1 { font-size: 32px; }
+  .typo-h2 { font-size: 24px; }
+  .section h2 { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-content">
+    <a href="#" class="brand">
+      <span class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+      </span>
+      MyWish.ma
+    </a>
+    <span class="nav-tag">
+      <span class="nav-tag-dot"></span>
+      Direction Artistique v2 — Dark Premium
+    </span>
+  </div>
+</nav>
+
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <div class="hero">
+    <div class="hero-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Refonte modern premium · v2
+    </div>
+    <h1>Une nouvelle direction.<br><span class="accent">Plus moderne. Plus premium.</span></h1>
+    <p>Dark mode chaleureux, icônes Lucide, typographie ultra-bold, animations smooth. La nouvelle identité MyWish.ma pour 2026.</p>
+  </div>
+
+  <!-- ============ TOC ============ -->
+  <div class="toc">
+    <a href="#colors" class="toc-item"><span class="toc-item-num">1</span>Couleurs</a>
+    <a href="#typo" class="toc-item"><span class="toc-item-num">2</span>Typographies</a>
+    <a href="#icons" class="toc-item"><span class="toc-item-num">3</span>Icônes</a>
+    <a href="#components" class="toc-item"><span class="toc-item-num">4</span>Composants</a>
+    <a href="#nav" class="toc-item"><span class="toc-item-num">5</span>Navigation mobile</a>
+    <a href="#examples" class="toc-item"><span class="toc-item-num">6</span>Exemples</a>
+    <a href="#animations" class="toc-item"><span class="toc-item-num">7</span>Animations</a>
+    <a href="#compare" class="toc-item"><span class="toc-item-num">8</span>Avant / Après</a>
+  </div>
+
+  <!-- ============ 1 — COULEURS ============ -->
+  <section class="section" id="colors">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <div class="section-title-block">
+        <h2>Palette de couleurs</h2>
+        <p class="section-subtitle">Dark mode chaleureux. Pêche saturée comme accent. Or doré pour les highlights.</p>
+      </div>
+    </div>
+
+    <!-- Brand -->
+    <div class="color-group">
+      <div class="color-group-title">Couleurs de marque</div>
+      <div class="swatch-grid">
+        <div class="swatch" data-hex="#EA580C">
+          <div class="swatch-color bg-primary"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Primary</div>
+            <div class="swatch-hex">#EA580C</div>
+            <div class="swatch-usage">Boutons, CTA, accents forts</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#FB923C">
+          <div class="swatch-color bg-primary-soft"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Primary Soft</div>
+            <div class="swatch-hex">#FB923C</div>
+            <div class="swatch-usage">Hover, dégradés, icônes</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#C2410C">
+          <div class="swatch-color bg-primary-deep"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Primary Deep</div>
+            <div class="swatch-hex">#C2410C</div>
+            <div class="swatch-usage">Dégradés, base sombre</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#FCD34D">
+          <div class="swatch-color bg-gold"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Accent Gold</div>
+            <div class="swatch-hex">#FCD34D</div>
+            <div class="swatch-usage">Highlights premium, étoiles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Surfaces -->
+    <div class="color-group">
+      <div class="color-group-title">Backgrounds (warm dark)</div>
+      <div class="swatch-grid">
+        <div class="swatch" data-hex="#0A0A0A">
+          <div class="swatch-color bg-deep-c"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">BG Deep</div>
+            <div class="swatch-hex">#0A0A0A</div>
+            <div class="swatch-usage">Fond principal de l'app</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#18181B">
+          <div class="swatch-color bg-raised-c"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">BG Raised</div>
+            <div class="swatch-hex">#18181B</div>
+            <div class="swatch-usage">Cards, surfaces</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#27272A">
+          <div class="swatch-color bg-high-c"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">BG High</div>
+            <div class="swatch-hex">#27272A</div>
+            <div class="swatch-usage">Hover, modals</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#2D2D30">
+          <div class="swatch-color bg-border-c"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Border</div>
+            <div class="swatch-hex">#2D2D30</div>
+            <div class="swatch-usage">Séparations subtiles</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="color-group">
+      <div class="color-group-title">Textes</div>
+      <div class="swatch-grid">
+        <div class="swatch" data-hex="#FAFAF9">
+          <div class="swatch-color bg-text-primary"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Primary</div>
+            <div class="swatch-hex">#FAFAF9</div>
+            <div class="swatch-usage">Titres, contenu principal</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#A1A1AA">
+          <div class="swatch-color bg-text-secondary"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Secondary</div>
+            <div class="swatch-hex">#A1A1AA</div>
+            <div class="swatch-usage">Descriptions</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#71717A">
+          <div class="swatch-color bg-text-muted"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Text Muted</div>
+            <div class="swatch-hex">#71717A</div>
+            <div class="swatch-usage">Métadonnées</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Semantic -->
+    <div class="color-group">
+      <div class="color-group-title">Couleurs sémantiques</div>
+      <div class="swatch-grid">
+        <div class="swatch" data-hex="#34D399">
+          <div class="swatch-color bg-success"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Success</div>
+            <div class="swatch-hex">#34D399</div>
+            <div class="swatch-usage">Validations</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#FBBF24">
+          <div class="swatch-color bg-warning"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Warning</div>
+            <div class="swatch-hex">#FBBF24</div>
+            <div class="swatch-usage">En attente</div>
+          </div>
+        </div>
+        <div class="swatch" data-hex="#F87171">
+          <div class="swatch-color bg-danger"></div>
+          <div class="swatch-info">
+            <div class="swatch-name">Danger</div>
+            <div class="swatch-hex">#F87171</div>
+            <div class="swatch-usage">Erreurs, refus</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proportion -->
+    <div class="proportion-demo">
+      <div class="proportion-title">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--primary-soft)"><path d="M3 3v18h18"/><path d="M7 12l4-4 4 4 6-6"/></svg>
+        La règle 80 / 15 / 5 — Calm but premium
+      </div>
+      <div class="proportion-bar">
+        <div class="proportion-segment prop-neutrals">80% Dark neutrals</div>
+        <div class="proportion-segment prop-primary">15% Pêche</div>
+        <div class="proportion-segment prop-accent">5%</div>
+      </div>
+      <div class="prop-legend">
+        <div class="prop-legend-item">
+          <div class="prop-legend-dot" style="background:#18181B;border:1px solid var(--border-strong);"></div>
+          <span>Backgrounds & textes</span>
+        </div>
+        <div class="prop-legend-item">
+          <div class="prop-legend-dot" style="background:#EA580C;"></div>
+          <span>Pêche : actions principales</span>
+        </div>
+        <div class="prop-legend-item">
+          <div class="prop-legend-dot" style="background:#FCD34D;"></div>
+          <span>Or : moments premium</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2 — TYPOGRAPHIES ============ -->
+  <section class="section" id="typo">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <div class="section-title-block">
+        <h2>Typographies</h2>
+        <p class="section-subtitle">Plus Jakarta Sans pour l'impact (extra bold), Inter pour la lecture confortable.</p>
+      </div>
+    </div>
+
+    <div class="typo-grid">
+      <div class="typo-row">
+        <div class="typo-sample"><div class="typo-display">Tout sur un lien.</div></div>
+        <div class="typo-meta">DISPLAY · 64px · 800</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-sample"><div class="typo-h1">Les 8 ans d'Ibrahim</div></div>
+        <div class="typo-meta">H1 · 44px · 800</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-sample"><div class="typo-h2">Cagnotte PS5</div></div>
+        <div class="typo-meta">H2 · 32px · 700</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-sample"><div class="typo-h3">Choisis ton avatar</div></div>
+        <div class="typo-meta">H3 · 22px · 700</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-sample"><div class="typo-body">Aide Ibrahim à atteindre son objectif. Chaque contribution sera validée après preuve de paiement reçue.</div></div>
+        <div class="typo-meta">Body · 15px · 400</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-sample"><div class="typo-small">Pas obligatoire — un coup de pouce pour la PlayStation 5</div></div>
+        <div class="typo-meta">Small · 13px · 400</div>
+      </div>
+      <div class="typo-row">
+        <div class="typo-sample"><div class="typo-tiny">Récolté · 5 minutes ago</div></div>
+        <div class="typo-meta">Tiny · 11px · 700 · UPPERCASE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 — ICÔNES ============ -->
+  <section class="section" id="icons">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <div class="section-title-block">
+        <h2>Icônes Lucide</h2>
+        <p class="section-subtitle">Icônes line modernes, stroke-width 1.75, 24×24px par défaut. Plus jamais d'emojis dans l'UI.</p>
+      </div>
+    </div>
+
+    <div class="icon-gallery">
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+        <div class="icon-name">gift</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        <div class="icon-name">calendar</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div class="icon-name">map-pin</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <div class="icon-name">users</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        <div class="icon-name">heart</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div class="icon-name">star</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 0 0-4 4v6h8v-6a4 4 0 0 0-4-4z"/><path d="M12 2v6"/><path d="M9 13h6"/><path d="M5 17v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/></svg>
+        <div class="icon-name">cake</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div class="icon-name">clock</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+        <div class="icon-name">check</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+        <div class="icon-name">x-circle</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        <div class="icon-name">plus</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        <div class="icon-name">edit</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
+        <div class="icon-name">trash</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+        <div class="icon-name">share</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        <div class="icon-name">link</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+        <div class="icon-name">user-plus</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <div class="icon-name">monitor</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c.552 0 1-.448 1-1V5c0-.552-.448-1-1-1H3c-.552 0-1 .448-1 1v6c0 .552.448 1 1 1"/><path d="M3 12v7c0 .552.448 1 1 1h16c.552 0 1-.448 1-1v-7"/></svg>
+        <div class="icon-name">badge-check</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <div class="icon-name">sparkles</div>
+      </div>
+      <div class="icon-card">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div class="icon-name">info</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+        Comment intégrer Lucide dans Next.js
+      </div>
+      <div class="callout-body">
+        Installer <strong>lucide-react</strong> en npm. Importer les icônes nommément : <em>{ Calendar, Heart, Gift }</em>. Stroke-width par défaut <strong>1.75</strong>, taille <strong>24×24</strong>. Aucune dépendance d'image, pure SVG inline. <strong>1 200+ icônes disponibles gratuitement.</strong>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4 — COMPOSANTS ============ -->
+  <section class="section" id="components">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <div class="section-title-block">
+        <h2>Composants de base</h2>
+        <p class="section-subtitle">Boutons, inputs, badges, progress bars. Tous redesignés pour le dark mode premium.</p>
+      </div>
+    </div>
+
+    <div class="cmp-grid">
+      <!-- Buttons -->
+      <div class="cmp-card">
+        <div class="cmp-label">Boutons · Variantes</div>
+        <div class="btn-row" style="margin-bottom:12px;">
+          <button class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+            Participer
+          </button>
+          <button class="btn btn-secondary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+            Modifier
+          </button>
+          <button class="btn btn-ghost">Annuler</button>
+          <button class="btn btn-danger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-2 14a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2L5 6"/></svg>
+            Supprimer
+          </button>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-xl">Créer mon événement</button>
+          <button class="btn btn-secondary btn-sm">Détails</button>
+        </div>
+      </div>
+
+      <!-- Inputs -->
+      <div class="cmp-card">
+        <div class="cmp-label">Champs de formulaire</div>
+        <div class="input-group">
+          <div class="input-row">
+            <label>Nom du héros</label>
+            <input class="input" placeholder="Ex: Ibrahim" value="Ibrahim">
+          </div>
+          <div class="input-row">
+            <label>Email</label>
+            <div class="input-with-icon">
+              <span class="input-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </span>
+              <input class="input" type="email" placeholder="ton@email.com">
+            </div>
+            <div class="input-help">Pour recevoir les confirmations RSVP</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badges -->
+      <div class="cmp-card">
+        <div class="cmp-label">Badges · États</div>
+        <div class="badge-row">
+          <span class="badge badge-primary">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 0 0-4 4v6h8v-6a4 4 0 0 0-4-4z"/></svg>
+            Anniversaire
+          </span>
+          <span class="badge badge-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Validé
+          </span>
+          <span class="badge badge-warning">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            En attente
+          </span>
+          <span class="badge badge-danger">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            Refusé
+          </span>
+          <span class="badge badge-gold">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Premium
+          </span>
+          <span class="badge badge-neutral">Brouillon</span>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="cmp-card">
+        <div class="cmp-label">Barre de progression · Cagnotte</div>
+        <div class="progress-card" style="padding:0;">
+          <div class="progress-label">
+            <span class="progress-current">2 100 MAD</span>
+            <span class="progress-of">/ 5 000 · <strong style="color:var(--primary-soft)">42%</strong></span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 5 — NAVIGATION MOBILE ============ -->
+  <section class="section" id="nav">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <div class="section-title-block">
+        <h2>Navigation mobile</h2>
+        <p class="section-subtitle">Tab bar fixe en bas, style native iOS. Maximum 5 entrées, icônes Lucide.</p>
+      </div>
+    </div>
+
+    <div class="tabbar-demo">
+      <div class="phone-frame">
+        <div class="phone-content">— Contenu de l'app —</div>
+        <div class="tabbar">
+          <div class="tab-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span class="tab-item-label">Accueil</span>
+          </div>
+          <div class="tab-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span class="tab-item-label">Events</span>
+          </div>
+          <div class="tab-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2"><circle cx="12" cy="12" r="11" fill="var(--primary)" stroke="none"/><line x1="12" y1="8" x2="12" y2="16" stroke="white"/><line x1="8" y1="12" x2="16" y2="12" stroke="white"/></svg>
+            <span class="tab-item-label">Créer</span>
+          </div>
+          <div class="tab-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span class="tab-item-label">RSVP</span>
+          </div>
+          <div class="tab-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <span class="tab-item-label">Profil</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top: 24px;">
+      <div class="callout-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Pourquoi tab bar fixe ?
+      </div>
+      <div class="callout-body">
+        L'utilisateur garde toujours <strong>les actions principales accessibles d'une main</strong>, même en scrollant. C'est le standard 2026 sur iOS et Android. Le bouton <strong>Créer</strong> au centre est <em>elevated</em> (orange plein) pour signaler l'action principale du produit.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6 — EXEMPLES ============ -->
+  <section class="section" id="examples">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <div class="section-title-block">
+        <h2>Exemples en contexte</h2>
+        <p class="section-subtitle">Les nouveaux composants assemblés. Cards d'événements premium dark.</p>
+      </div>
+    </div>
+
+    <div class="example-grid">
+      <div class="event-card">
+        <div class="event-photo">
+          <div class="event-photo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 0 0-4 4v6h8v-6a4 4 0 0 0-4-4z"/><path d="M12 2v6"/><path d="M9 13h6"/><path d="M5 17v3a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3"/></svg>
+          </div>
+          <span class="event-tag">Anniversaire · Dans 7 jours</span>
+        </div>
+        <div class="event-body">
+          <div class="event-title">Les 8 ans d'Ibrahim</div>
+          <div class="event-meta">
+            <span class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+              17 mai
+            </span>
+            <span class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Casablanca
+            </span>
+          </div>
+          <div class="event-stats">
+            <div class="event-stat">
+              <div class="event-stat-val">23</div>
+              <div class="event-stat-lbl">Invités</div>
+            </div>
+            <div class="event-stat">
+              <div class="event-stat-val">2 100</div>
+              <div class="event-stat-lbl">MAD</div>
+            </div>
+            <div class="event-stat">
+              <div class="event-stat-val">42%</div>
+              <div class="event-stat-lbl">Avance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-card">
+        <div class="event-photo" style="background:linear-gradient(135deg, #581C87 0%, #BE185D 50%, #EA580C 100%);">
+          <div class="event-photo-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="6"/><circle cx="16" cy="15" r="6"/></svg>
+          </div>
+          <span class="event-tag">Mariage · Dans 3 mois</span>
+        </div>
+        <div class="event-body">
+          <div class="event-title">Yasmine & Karim</div>
+          <div class="event-meta">
+            <span class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
+              12 sept.
+            </span>
+            <span class="event-meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Marrakech
+            </span>
+          </div>
+          <div class="event-stats">
+            <div class="event-stat">
+              <div class="event-stat-val">187</div>
+              <div class="event-stat-lbl">Invités</div>
+            </div>
+            <div class="event-stat">
+              <div class="event-stat-val">12 500</div>
+              <div class="event-stat-lbl">MAD</div>
+            </div>
+            <div class="event-stat">
+              <div class="event-stat-val">68%</div>
+              <div class="event-stat-lbl">Avance</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7 — ANIMATIONS ============ -->
+  <section class="section" id="animations">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <div class="section-title-block">
+        <h2>Micro-interactions</h2>
+        <p class="section-subtitle">Smooth, premium, jamais "joyeux comme un enfant". Le festif vient des couleurs.</p>
+      </div>
+    </div>
+
+    <div class="anim-grid">
+      <div class="anim-card">
+        <div class="anim-stage">
+          <svg class="anim-fade" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div class="anim-name">Smooth Fade</div>
+        <div class="anim-desc">Loading, transitions de page</div>
+      </div>
+      <div class="anim-card">
+        <div class="anim-stage">
+          <svg class="anim-scale" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="anim-name">Smooth Scale</div>
+        <div class="anim-desc">Hover sur cards et boutons</div>
+      </div>
+      <div class="anim-card">
+        <div class="anim-stage">
+          <svg class="anim-slide" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><polygon points="22 3 15 17 11 13 2 9 22 3"/></svg>
+        </div>
+        <div class="anim-name">Smooth Slide</div>
+        <div class="anim-desc">Notifications, toasts</div>
+      </div>
+      <div class="anim-card">
+        <div class="anim-stage">
+          <svg class="anim-glow" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="anim-name">Smooth Glow</div>
+        <div class="anim-desc">Cagnotte qui grandit</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Règle d'or
+      </div>
+      <div class="callout-body">
+        <strong>Plus jamais de bounce ou wiggle.</strong> Toutes les animations utilisent un easing <em>cubic-bezier(0.4, 0, 0.2, 1)</em>, durée <strong>300-500ms</strong>. L'effet premium vient de la <em>douceur et de la lenteur</em> des transitions, pas de leur amplitude. Maximum <strong>2 éléments animés simultanément</strong> à l'écran.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 8 — AVANT/APRÈS ============ -->
+  <section class="section" id="compare">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <div class="section-title-block">
+        <h2>Avant / Après</h2>
+        <p class="section-subtitle">Pourquoi le dark premium vs la version light avec emojis. La leçon visuelle.</p>
+      </div>
+    </div>
+
+    <div class="compare-grid">
+      <div class="compare-item compare-before">
+        <div class="compare-label">v1 — Light cute</div>
+        <div class="compare-content" style="margin-top:24px; background:transparent;">
+          <div class="preview-old">
+            <div class="preview-old-banner">🎈🎂🎉🎁🎈</div>
+            <div class="preview-old-title">Les 8 ans d'Ibrahim !</div>
+            <div class="preview-old-sub">Le héros du jour 🦸‍♂️🎮</div>
+          </div>
+        </div>
+        <ul class="compare-issues">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            Emojis bruts comme décoration UI = vieillot
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            Texte arc-en-ciel difficile à lire
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            4 couleurs en compétition pour l'attention
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+            Style "anniversaire enfant" qui ne scale pas vers mariage
+          </li>
+        </ul>
+      </div>
+
+      <div class="compare-item compare-after">
+        <div class="compare-label">v2 — Dark premium</div>
+        <div class="compare-content" style="margin-top:24px; background:transparent;">
+          <div class="preview-new">
+            <div class="preview-new-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8a4 4 0 0 0-4 4v6h8v-6a4 4 0 0 0-4-4z"/><path d="M12 2v6"/><path d="M9 13h6"/></svg>
+            </div>
+            <div class="preview-new-title">Les 8 ans d'Ibrahim</div>
+            <div class="preview-new-sub">Dimanche 17 mai · 13h</div>
+            <div class="preview-new-tag">
+              <svg style="width:12px;height:12px;margin-right:4px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
+              Objectif PS5
+            </div>
+          </div>
+        </div>
+        <ul class="compare-issues">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Icône Lucide custom dans un container premium
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Hiérarchie typo claire : titre → date → action
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            1 couleur signature qui guide l'œil
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            Style premium qui scale anniv → mariage → entreprise
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="callout-title">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        La leçon design
+      </div>
+      <div class="callout-body">
+        <strong>Premium ≠ Triste. Festif ≠ Multicolore.</strong><br><br>
+        Les meilleures apps modernes (Linear, Vercel, Arc, Notion dark) prouvent qu'<em>un dark mode chaleureux + 1 accent chromatique fort</em> donne une identité <strong>infiniment plus mémorable</strong> qu'un arc-en-ciel pastel. C'est le langage visuel des produits qui veulent durer 10 ans, pas 2.
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<div class="footer">
+  <div class="footer-brand">
+    <span class="brand-mark">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/></svg>
+    </span>
+    MyWish.ma
+  </div>
+  <div>Direction artistique v2 · Dark Premium · Mai 2026</div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+  <span id="toast-msg">Couleur copiée</span>
+</div>
+
+<script>
+document.querySelectorAll('.swatch').forEach(s => {
+  s.addEventListener('click', () => {
+    const hex = s.dataset.hex;
+    if (!hex) return;
+    if (navigator.clipboard?.writeText) {
+      navigator.clipboard.writeText(hex).then(() => showToast(hex + ' copié'));
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = hex; document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast(hex + ' copié'); } catch(e) {}
+      ta.remove();
+    }
+  });
+});
+
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+</script>
+
+</body>
+</html>
