@@ -12,9 +12,10 @@ declare(strict_types=1);
 // 1. BOOTSTRAP
 // ─────────────────────────────────────────────────
 
-// Define paths
 define('PUBLIC_PATH', __DIR__);
-define('BASE_PATH',   dirname(__DIR__));
+// On cPanel deployment, src/ is copied INSIDE the same dir as index.php
+// So BASE_PATH = PUBLIC_PATH (not parent dir)
+define('BASE_PATH',   __DIR__);
 define('SRC_PATH',    BASE_PATH . '/src');
 define('STORAGE_PATH', BASE_PATH . '/storage');
 define('DATABASE_PATH', BASE_PATH . '/database');
