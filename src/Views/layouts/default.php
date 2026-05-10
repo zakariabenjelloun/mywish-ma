@@ -26,13 +26,13 @@
 </head>
 <body class="bg-bg-deep text-text-primary font-body antialiased">
 
-    <?= View::partial('partials/header') ?>
+<?= \MyWish\Core\View::partial('partials/header') ?>
 
     <main>
         <?= $content ?? '' ?>
     </main>
 
-    <?= View::partial('partials/footer') ?>
+<?= \MyWish\Core\View::partial('partials/footer') ?>
 
 </body>
 </html>
