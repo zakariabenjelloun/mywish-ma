@@ -32,7 +32,7 @@ deployment:
     # ──────────────────────────────────────────
     # Step 1: Set the deploy path
     # ──────────────────────────────────────────
-- export DEPLOYPATH=/home/casaeucx/mywish.allocantine.ma/
+    - export DEPLOYPATH=/home/casaeucx/mywish.allocantine.ma
     # ──────────────────────────────────────────
     # Step 2: Copy the public/ folder contents to the deploy path
     #         (public/ is the document root)
