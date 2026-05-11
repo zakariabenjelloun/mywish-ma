@@ -1,0 +1,109 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────────────────────────────────────── */
+/* Custom base styles                        */
+/* ───────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: theme('colors.bg-deep');
+    color: theme('colors.text-primary');
+    font-family: theme('fontFamily.body');
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    position: relative;
+  }
+
+  /* Subtle gradient background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: theme('backgroundImage.gradient-hero');
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(234, 88, 12, 0.4);
+    color: theme('colors.text-primary');
+  }
+
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: theme('fontFamily.display');
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+}
+
+/* ───────────────────────────────────────── */
+/* Component classes (reusable patterns)     */
+/* ───────────────────────────────────────── */
+@layer components {
+  /* Primary button — main CTA */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply bg-primary text-white;
+    @apply px-6 py-3 rounded-xl;
+    @apply font-semibold text-sm;
+    @apply shadow-glow-primary;
+    @apply transition-all duration-300 ease-mywish;
+    @apply hover:bg-primary-soft hover:scale-105;
+  }
+
+  /* Secondary button — less emphasis */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply bg-bg-raised text-text-primary;
+    @apply border border-bg-higher;
+    @apply px-6 py-3 rounded-xl;
+    @apply font-semibold text-sm;
+    @apply transition-all duration-300 ease-mywish;
+    @apply hover:bg-bg-high hover:border-primary;
+  }
+
+  /* Ghost button — minimal */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2;
+    @apply text-text-secondary;
+    @apply px-4 py-2 rounded-lg;
+    @apply font-medium text-sm;
+    @apply transition-colors duration-200;
+    @apply hover:text-text-primary hover:bg-bg-raised;
+  }
+
+  /* Badge — small label */
+  .badge {
+    @apply inline-flex items-center gap-2;
+    @apply bg-bg-raised text-text-secondary;
+    @apply px-3 py-1 rounded-pill;
+    @apply text-xs font-semibold;
+    @apply border border-bg-higher;
+  }
+
+  .badge-primary {
+    @apply bg-primary/10 text-primary-soft;
+    @apply border-primary/20;
+  }
+
+  /* Card — base container */
+  .card {
+    @apply bg-bg-raised;
+    @apply rounded-2xl p-6;
+    @apply border border-bg-higher;
+    @apply shadow-card;
+  }
+
+  /* Container — max width wrapper */
+  .container-mywish {
+    @apply max-w-7xl mx-auto px-5;
+  }
+}
