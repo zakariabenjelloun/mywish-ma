@@ -1,26 +1,55 @@
-<section style="padding:80px 20px;text-align:center;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(234,88,12,.15),transparent 70%),#0A0A0A;">
-    <div style="max-width:720px;margin:0 auto;">
-        <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(234,88,12,.08);color:#FB923C;padding:6px 12px;border-radius:999px;font-size:12px;font-weight:600;margin-bottom:24px;border:1px solid rgba(234,88,12,.22);">
+<section class="container-mywish py-20 lg:py-32 text-center">
+
+    <!-- Badge "Made in Morocco" -->
+    <div class="inline-flex items-center gap-2 mb-6">
+        <span class="badge badge-primary">
             🇲🇦 Conçu au Maroc
         </span>
-
-        <h1 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,7vw,72px);font-weight:800;letter-spacing:-.04em;line-height:.98;margin-bottom:24px;">
-            Khotba, anniversaire,<br>mariage…<br>
-            <span style="background:linear-gradient(135deg,#FB923C,#FCD34D);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Tout sur un lien.</span>
-        </h1>
-
-        <p style="font-size:18px;color:#A1A1AA;max-width:540px;margin:0 auto 32px;line-height:1.6;">
-            Créez la page de votre événement familial en 5 minutes : invitations, cagnotte et souvenirs sur un seul lien WhatsApp.
-        </p>
-
-        <a href="/auth/google" style="display:inline-flex;align-items:center;gap:8px;background:#EA580C;color:white;padding:20px 32px;border-radius:12px;font-weight:700;font-size:16px;text-decoration:none;box-shadow:0 0 32px rgba(234,88,12,.3);">
-            Créer ma page gratuitement →
-        </a>
-
-        <p style="margin-top:48px;color:#52525B;font-size:13px;">
-            ⚙️ <strong>Bootstrap PHP/MySQL/cPanel</strong><br>
-            Le projet vient d'être initialisé.<br>
-            Voir <code>/docs/</code> pour la documentation.
-        </p>
     </div>
+
+    <!-- Hero title -->
+    <h1 class="font-display font-extrabold text-5xl md:text-6xl lg:text-7xl mb-6 leading-[0.98] tracking-tight">
+        Khotba, anniversaire,<br>mariage…<br>
+        <span class="bg-gradient-to-r from-primary-soft to-gold bg-clip-text text-transparent">
+            Tout sur un lien.
+        </span>
+    </h1>
+
+    <!-- Hero subtitle -->
+    <p class="text-lg text-text-secondary max-w-xl mx-auto mb-10 leading-relaxed">
+        Créez la page de votre événement familial en 5 minutes :
+        invitations, cagnotte et souvenirs sur un seul lien WhatsApp.
+    </p>
+
+    <!-- CTA primary -->
+    <a href="/auth/google" class="btn-primary text-base px-8 py-4">
+        Créer ma page gratuitement
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"/>
+            <polyline points="12 5 19 12 12 19"/>
+        </svg>
+    </a>
+
+    <!-- Trust signals -->
+    <div class="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-text-muted">
+        <div class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success">
+                <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            5 minutes pour créer
+        </div>
+        <div class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success">
+                <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            100% gratuit pour commencer
+        </div>
+        <div class="flex items-center gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success">
+                <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            Sans inscription complexe
+        </div>
+    </div>
+
 </section>

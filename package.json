@@ -1,0 +1,27 @@
+{
+  "name": "mywish-ma",
+  "version": "1.0.0",
+  "description": "> The page of your family event. Invitations, kitty (cagnotte), and souvenirs, all on one WhatsApp link.",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zakariabenjelloun/mywish-ma.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/zakariabenjelloun/mywish-ma/issues"
+  },
+  "homepage": "https://github.com/zakariabenjelloun/mywish-ma#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
