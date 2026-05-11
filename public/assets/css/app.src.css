@@ -10,6 +10,11 @@
     scroll-behavior: smooth;
   }
 
+  /* Alpine.js: hide elements with x-cloak until Alpine processes them */
+  [x-cloak] {
+    display: none !important;
+  }
+
   body {
     background: theme('colors.bg-deep');
     color: theme('colors.text-primary');

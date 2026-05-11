@@ -102,6 +102,7 @@ $router->get('/auth/google/callback', 'AuthController@handleGoogleCallback');
 $router->post('/auth/logout', 'AuthController@logout');
 
 // ── Organizer routes (require auth)
+$router->get('/profile', 'ProfileController@index');
 $router->get('/dashboard', 'DashboardController@index');
 $router->get('/events/create', 'EventController@create');
 $router->post('/events', 'EventController@store');
