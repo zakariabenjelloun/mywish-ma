@@ -1,119 +1,47 @@
 ---
 # ═══════════════════════════════════════════════════════════════════
-# .cpanel.yml — MyWish.ma deployment script for cPanel Git Version Control
+# .cpanel.yml — MyWish.ma deployment script
 # ═══════════════════════════════════════════════════════════════════
-#
-# This script runs AUTOMATICALLY when you click "Deploy HEAD Commit" in cPanel.
-#
-# IMPORTANT — How this works in cPanel:
-#
-# 1. cPanel Git Version Control checks out your branch into a NON-PUBLIC repo dir,
-#    typically: /home/USERNAME/repositories/mywish/  (or similar)
-#
-# 2. This .cpanel.yml then COPIES the necessary files to the public directory:
-#       - DEV branch → /home/USERNAME/dev.mywish.ma/
-#       - MAIN branch → /home/USERNAME/public_html/
-#
-# 3. The "DEPLOYPATH" variable below is automatically set by cPanel based on
-#    the deployment path you configured in cPanel UI.
-#
-# ═══════════════════════════════════════════════════════════════════
-#
-# IMPORTANT — TWO ENVIRONMENTS, ONE FILE:
-# Both `dev` and `main` branches use this same .cpanel.yml.
-# The difference is the DEPLOYPATH set in cPanel for each repo.
-# - For DEV repo : set DEPLOYPATH = /home/USERNAME/dev.mywish.ma/
-# - For PROD repo: set DEPLOYPATH = /home/USERNAME/public_html/
-#
+# Single-branch workflow: only `main` → /home/casaeucx/mywish.allocantine.ma/
+# Runs automatically on "Deploy HEAD Commit" in cPanel Git Version Control.
 # ═══════════════════════════════════════════════════════════════════
 
 deployment:
   tasks:
-    # ──────────────────────────────────────────
-    # Step 1: Set the deploy path
-    # ──────────────────────────────────────────
     - export DEPLOYPATH=/home/casaeucx/mywish.allocantine.ma
-    # ──────────────────────────────────────────
-    # Step 2: Copy the public/ folder contents to the deploy path
-    #         (public/ is the document root)
-    # ──────────────────────────────────────────
-    - /bin/cp -R public/. $DEPLOYPATH
 
-    # ──────────────────────────────────────────
-    # Step 3: Copy src/ folder ONE LEVEL UP from web root
-    #         (so it's NOT publicly accessible)
-    #         /home/USER/dev.mywish.ma/   ← public files
-    #         /home/USER/dev.mywish.ma_app/  ← src/ + database/ etc.
-    #
-    # NOTE: this requires a structure where the cPanel "Document Root"
-    # for dev.mywish.ma is /home/USER/dev.mywish.ma/, and the parent
-    # /home/USER/ is your home dir.
-    #
-    # ALTERNATIVE (simpler but less secure):
-    # Put src/ INSIDE the deploy path (web root) but block access via .htaccess.
-    # This is what the included public/.htaccess does (it blocks /src/, /database/, etc.)
-    # ──────────────────────────────────────────
-    - /bin/cp -R src/ $DEPLOYPATH/src/
-    - /bin/cp -R database/ $DEPLOYPATH/database/
-
-    # ──────────────────────────────────────────
-    # Step 4: Make sure storage/ exists with correct permissions
-    #         storage/ contains logs, cache, uploads — NOT in Git but needed
-    # ──────────────────────────────────────────
+    # ─────────────────────────────────────────
+    # 1. Ensure target subdirectories exist
+    #    (mkdir -p is idempotent — safe on every deploy)
+    # ─────────────────────────────────────────
+    - /bin/mkdir -p $DEPLOYPATH/src
+    - /bin/mkdir -p $DEPLOYPATH/database
     - /bin/mkdir -p $DEPLOYPATH/storage/logs
     - /bin/mkdir -p $DEPLOYPATH/storage/cache
     - /bin/mkdir -p $DEPLOYPATH/storage/uploads
+
+    # ─────────────────────────────────────────
+    # 2. Copy CONTENTS using the "/." pattern.
+    #    The trailing "/." tells cp to copy entries INTO the target dir
+    #    (instead of nesting). Recurses into new subdirs automatically
+    #    (src/Models/, src/Controllers/AuthController.php, etc.).
+    #    -p preserves source file modes/timestamps.
+    # ─────────────────────────────────────────
+    - /bin/cp -Rp public/. $DEPLOYPATH/
+    - /bin/cp -Rp src/. $DEPLOYPATH/src/
+    - /bin/cp -Rp database/. $DEPLOYPATH/database/
+
+    # ─────────────────────────────────────────
+    # 3. Permissions — SCOPED to deployed code only.
+    #    Never chmod $DEPLOYPATH root: .env, error_log, cgi-bin live
+    #    there and must keep their existing permissions (.env stays 600).
+    # ─────────────────────────────────────────
+    - /bin/chmod 644 $DEPLOYPATH/index.php $DEPLOYPATH/.htaccess
+    - /bin/find $DEPLOYPATH/assets $DEPLOYPATH/src $DEPLOYPATH/database -type f -exec chmod 644 {} \;
+    - /bin/find $DEPLOYPATH/assets $DEPLOYPATH/src $DEPLOYPATH/database -type d -exec chmod 755 {} \;
     - /bin/chmod -R 775 $DEPLOYPATH/storage
 
-    # ──────────────────────────────────────────
-    # Step 5: Set safe file permissions
-    # ──────────────────────────────────────────
-    - /bin/find $DEPLOYPATH -type f -exec chmod 644 {} \;
-    - /bin/find $DEPLOYPATH -type d -exec chmod 755 {} \;
-    - /bin/chmod -R 775 $DEPLOYPATH/storage
-
-    # ──────────────────────────────────────────
-    # Step 6: PROTECT THE .env FILE
-    #         .env is NOT in Git, so it must already exist on the server.
-    #         If it's missing, the app will fail. This is intentional for security.
-    #
-    # ⚠️  FIRST DEPLOY: SSH into the server and create .env manually.
-    #     Use .env.example as template. Place it at $DEPLOYPATH/../.env
-    #     (one level above web root) or at $DEPLOYPATH/.env (less secure but works).
-    # ──────────────────────────────────────────
-
-    # ──────────────────────────────────────────
-    # Step 7: Touch a deployment marker (useful for debugging)
-    # ──────────────────────────────────────────
+    # ─────────────────────────────────────────
+    # 4. Deployment marker
+    # ─────────────────────────────────────────
     - /bin/date > $DEPLOYPATH/.last-deploy.txt
-
-# ═══════════════════════════════════════════════════════════════════
-#
-# 📋 PRE-DEPLOY CHECKLIST (manual, run BEFORE clicking Deploy in cPanel):
-#
-# □  Tested locally with `php -S localhost:8000 -t public`
-# □  All commits on `dev` or `main` branch
-# □  No .env or secrets in the commit
-# □  All migrations in database/migrations/ are tested
-# □  If a new migration was added: applied it to the DEV database
-#    via cPanel phpMyAdmin BEFORE deploying the code
-# □  No `var_dump`, `dd()`, or `console.log` left in code
-# □  Tested critical paths after deploy
-#
-# ═══════════════════════════════════════════════════════════════════
-#
-# 🚨 TROUBLESHOOTING:
-#
-# Q: "I see a blank page after deploy"
-# A: Check $DEPLOYPATH/storage/logs/ for PHP errors. Probably .env missing.
-#
-# Q: "Permission denied" errors
-# A: SSH in and run: chmod -R 775 $DEPLOYPATH/storage
-#
-# Q: "Database connection failed"
-# A: .env file missing or wrong DB credentials. Verify with cPanel DB section.
-#
-# Q: "Deploy didn't update files"
-# A: cPanel Git: click "Update from Remote" FIRST, then "Deploy HEAD Commit".
-#
-# ═══════════════════════════════════════════════════════════════════
