@@ -78,6 +78,27 @@ $flashError   = flash('error');
         </div>
     <?php endif; ?>
 
+    <!-- ═══════ HEADER (mini-public) ═══════ -->
+    <header class="sticky top-0 z-40 backdrop-blur-xl bg-bg-deep/80 border-b border-bg-higher">
+        <div class="container-mywish flex items-center justify-between py-3">
+            <a href="/" class="flex items-center gap-2 text-text-primary no-underline">
+                <span class="w-9 h-9 rounded-xl bg-gradient-to-br from-primary to-primary-soft flex items-center justify-center text-white">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 12 20 22 4 22 4 12"/>
+                        <rect x="2" y="7" width="20" height="5"/>
+                        <line x1="12" y1="22" x2="12" y2="7"/>
+                        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/>
+                        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+                    </svg>
+                </span>
+                <span class="font-display font-extrabold text-base">MyWish.ma</span>
+            </a>
+            <a href="/events/new" class="text-xs font-semibold px-3 py-2 rounded-lg border border-primary/40 text-primary-soft hover:bg-primary/10 transition-colors">
+                Créer ma page
+            </a>
+        </div>
+    </header>
+
     <!-- ═══════ HERO ═══════ -->
     <section class="relative">
         <div class="relative h-[60vh] min-h-[360px] md:h-[70vh] md:min-h-[480px] overflow-hidden">
@@ -106,30 +127,28 @@ $flashError   = flash('error');
     </section>
 
     <!-- ═══════ COUNTDOWN ═══════ -->
-    <section class="container-mywish py-12 -mt-16 relative z-10 max-w-2xl">
-        <div class="card">
-            <div class="text-center mb-5">
-                <div class="text-xs font-semibold uppercase tracking-widest text-text-muted">Plus que</div>
-            </div>
-            <div id="countdown" data-target="<?= e($countdownTarget) ?>" class="grid grid-cols-4 gap-2 sm:gap-4">
-                <div class="text-center">
-                    <div class="bg-bg-deep border border-bg-higher rounded-xl py-4 mb-2 font-display font-extrabold text-3xl sm:text-5xl text-primary-soft" data-cd="days">--</div>
-                    <div class="text-xs uppercase tracking-wider text-text-muted">Jours</div>
+    <section class="py-12 bg-bg-higher">
+        <div class="container-mywish max-w-4xl">
+            <h2 class="text-center text-sm uppercase tracking-wide text-text-secondary mb-6">Plus que</h2>
+            <div id="countdown" data-target="<?= e($countdownTarget) ?>" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                <div class="bg-bg-raised border border-bg-higher rounded-xl p-6 text-center">
+                    <div id="days" class="text-4xl md:text-5xl font-display font-bold text-primary mb-1">--</div>
+                    <div class="text-xs uppercase tracking-wide text-text-secondary">Jours</div>
                 </div>
-                <div class="text-center">
-                    <div class="bg-bg-deep border border-bg-higher rounded-xl py-4 mb-2 font-display font-extrabold text-3xl sm:text-5xl text-primary-soft" data-cd="hours">--</div>
-                    <div class="text-xs uppercase tracking-wider text-text-muted">Heures</div>
+                <div class="bg-bg-raised border border-bg-higher rounded-xl p-6 text-center">
+                    <div id="hours" class="text-4xl md:text-5xl font-display font-bold text-primary mb-1">--</div>
+                    <div class="text-xs uppercase tracking-wide text-text-secondary">Heures</div>
                 </div>
-                <div class="text-center">
-                    <div class="bg-bg-deep border border-bg-higher rounded-xl py-4 mb-2 font-display font-extrabold text-3xl sm:text-5xl text-primary-soft" data-cd="minutes">--</div>
-                    <div class="text-xs uppercase tracking-wider text-text-muted">Minutes</div>
+                <div class="bg-bg-raised border border-bg-higher rounded-xl p-6 text-center">
+                    <div id="minutes" class="text-4xl md:text-5xl font-display font-bold text-primary mb-1">--</div>
+                    <div class="text-xs uppercase tracking-wide text-text-secondary">Minutes</div>
                 </div>
-                <div class="text-center">
-                    <div class="bg-bg-deep border border-bg-higher rounded-xl py-4 mb-2 font-display font-extrabold text-3xl sm:text-5xl text-gold" data-cd="seconds">--</div>
-                    <div class="text-xs uppercase tracking-wider text-text-muted">Secondes</div>
+                <div class="bg-bg-raised border border-bg-higher rounded-xl p-6 text-center">
+                    <div id="seconds" class="text-4xl md:text-5xl font-display font-bold text-primary mb-1">--</div>
+                    <div class="text-xs uppercase tracking-wide text-text-secondary">Secondes</div>
                 </div>
             </div>
-            <div id="countdownDone" class="hidden text-center font-display font-bold text-2xl text-gold mt-2">
+            <div id="countdownDone" class="hidden text-center font-display font-bold text-2xl text-gold mt-6">
                 🎉 L'événement a eu lieu !
             </div>
         </div>
@@ -137,7 +156,7 @@ $flashError   = flash('error');
 
     <!-- ═══════ MESSAGE D'ACCUEIL ═══════ -->
     <?php if (!empty($event['welcome_message'])): ?>
-    <section class="container-mywish py-8 max-w-2xl">
+    <section class="container-mywish py-12 max-w-2xl">
         <div class="card text-center">
             <p class="text-lg leading-relaxed text-text-primary whitespace-pre-line">
                 <?= e($event['welcome_message']) ?>
@@ -147,7 +166,7 @@ $flashError   = flash('error');
     <?php endif; ?>
 
     <!-- ═══════ INFOS (date / heure / lieu) ═══════ -->
-    <section class="container-mywish py-8">
+    <section class="container-mywish py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <!-- Date -->
             <div class="card text-center">
@@ -202,7 +221,7 @@ $flashError   = flash('error');
 
     <!-- ═══════ CAGNOTTE (conditional) ═══════ -->
     <?php if ($cagnotte): ?>
-    <section class="container-mywish py-8 max-w-3xl" id="cagnotte" x-data="{modalOpen: false}">
+    <section class="container-mywish py-12 max-w-3xl" id="cagnotte" x-data="{modalOpen: false}">
         <div class="card">
             <?php if (!empty($cagnotte['photo_url'])): ?>
             <img src="<?= e($cagnotte['photo_url']) ?>" alt="" class="w-full max-h-64 object-cover rounded-xl mb-5">
@@ -299,7 +318,7 @@ $flashError   = flash('error');
     <?php endif; ?>
 
     <!-- ═══════ RSVP ═══════ -->
-    <section class="container-mywish py-8 max-w-2xl" id="rsvp">
+    <section class="container-mywish py-12 max-w-2xl" id="rsvp">
         <div class="card">
             <h2 class="font-display font-extrabold text-2xl md:text-3xl tracking-tighter mb-2 text-center">Vous serez là ?</h2>
             <p class="text-text-secondary text-center mb-6 text-sm">Confirmez votre présence pour aider à l'organisation.</p>
@@ -379,10 +398,10 @@ $flashError   = flash('error');
             const target    = new Date(targetStr).getTime();
             if (isNaN(target)) return;
 
-            const elDays    = container.querySelector('[data-cd="days"]');
-            const elHours   = container.querySelector('[data-cd="hours"]');
-            const elMinutes = container.querySelector('[data-cd="minutes"]');
-            const elSeconds = container.querySelector('[data-cd="seconds"]');
+            const elDays    = document.getElementById('days');
+            const elHours   = document.getElementById('hours');
+            const elMinutes = document.getElementById('minutes');
+            const elSeconds = document.getElementById('seconds');
 
             let timer;
             function tick() {

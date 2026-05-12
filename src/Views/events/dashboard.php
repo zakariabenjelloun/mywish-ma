@@ -62,14 +62,14 @@ $moisShort = ['janv', 'févr', 'mars', 'avril', 'mai', 'juin', 'juil', 'août', 
     <?php else: ?>
 
         <!-- ═══════ Events grid ═══════ -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <?php foreach ($events as $event):
                 $ts          = strtotime($event['event_date']);
                 $shortDate   = (int) date('j', $ts) . ' ' . $moisShort[(int) date('n', $ts) - 1] . ' ' . date('Y', $ts);
                 $shareText   = 'Venez célébrer avec moi : ' . url('/e/' . $event['slug']);
                 $whatsappUrl = 'https://wa.me/?text=' . urlencode($shareText);
             ?>
-            <div class="card flex flex-col">
+            <div class="card flex flex-col hover:border-primary/50 transition-colors">
                 <!-- Photo / fallback -->
                 <?php if (!empty($event['hero_photo_url'])): ?>
                     <img src="<?= e($event['hero_photo_url']) ?>" alt="" class="w-full h-40 object-cover rounded-xl mb-4">
@@ -99,7 +99,7 @@ $moisShort = ['janv', 'févr', 'mars', 'avril', 'mai', 'juin', 'juil', 'août', 
 
                 <!-- Actions (mt-auto pushes to bottom of card) -->
                 <div class="mt-auto space-y-2">
-                    <div class="grid grid-cols-2 gap-2">
+                    <div class="flex flex-col sm:flex-row gap-2">
                         <a href="/e/<?= e($event['slug']) ?>" target="_blank" rel="noopener"
                            class="btn-secondary text-xs py-2 inline-flex items-center justify-center gap-1.5">
                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
