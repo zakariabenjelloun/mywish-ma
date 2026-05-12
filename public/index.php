@@ -37,6 +37,8 @@ spl_autoload_register(function (string $class): void {
 
 // Load helpers
 require_once SRC_PATH . '/Helpers/functions.php';
+require_once SRC_PATH . '/Helpers/event_types.php';
+require_once SRC_PATH . '/Helpers/upload.php';
 
 // ─────────────────────────────────────────────────
 // 2. LOAD ENVIRONMENT
@@ -94,7 +96,7 @@ $router = new Router();
 
 // ── Public routes
 $router->get('/', 'HomeController@index');
-$router->get('/event/{slug}', 'EventController@show');
+$router->get('/e/{slug}', 'EventController@show');
 
 // ── Auth routes
 $router->get('/auth/google', 'AuthController@redirectToGoogle');
@@ -103,13 +105,14 @@ $router->post('/auth/logout', 'AuthController@logout');
 
 // ── Organizer routes (require auth)
 $router->get('/profile', 'ProfileController@index');
-$router->get('/dashboard', 'DashboardController@index');
-$router->get('/events/create', 'EventController@create');
+$router->get('/dashboard', 'EventController@dashboard');
+$router->get('/events/new', 'EventController@create');
 $router->post('/events', 'EventController@store');
+$router->post('/events/{id}/archive', 'EventController@destroy');
 
-// ── API routes
-$router->post('/api/rsvp', 'RsvpController@store');
-$router->post('/api/contributions', 'ContributionController@store');
+// ── Public event interaction (RSVP + pledges)
+$router->post('/e/{slug}/rsvp',   'RsvpController@store');
+$router->post('/e/{slug}/pledge', 'PledgeController@store');
 
 // ─────────────────────────────────────────────────
 // 6. DISPATCH
