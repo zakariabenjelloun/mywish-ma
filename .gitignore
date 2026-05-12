@@ -111,3 +111,8 @@ TODO-LOCAL.md
 backup_*.sql
 dump_*.sql
 # Note: migration files (database/migrations/*.sql) ARE committed
+
+# ─────────────────────────────────────────────────
+# AI assistant / agent state
+# ─────────────────────────────────────────────────
+.claude/
