@@ -225,20 +225,27 @@ final class EventController
             return '<h1 style="font-family:system-ui;text-align:center;margin-top:25vh;">404 — Événement introuvable</h1>';
         }
 
-        $cagnotte       = Cagnotte::findByEvent((int) $event['id']);
-        $rsvpCounts     = Rsvp::countByResponse((int) $event['id']);
-        $totalValidated = $cagnotte ? Pledge::totalAmount((int) $cagnotte['id'], 'validated') : 0.0;
-        $totalPending   = $cagnotte ? Pledge::totalAmount((int) $cagnotte['id'], 'pending')   : 0.0;
+        $cagnotte         = Cagnotte::findByEvent((int) $event['id']);
+        $validatedPledges = [];
+        $totalValidated   = 0.0;
+        $totalPending     = 0.0;
+        if ($cagnotte) {
+            $allPledges       = Pledge::findByCagnotte((int) $cagnotte['id']);
+            $validatedPledges = array_values(array_filter($allPledges, fn($p) => $p['status'] === 'validated'));
+            $totalValidated   = Pledge::totalAmount((int) $cagnotte['id'], 'validated');
+            $totalPending     = Pledge::totalAmount((int) $cagnotte['id'], 'pending');
+        }
+        $rsvpCounts = Rsvp::countByResponse((int) $event['id']);
 
-        // Placeholder — Sprint 3 C.4 will build the real public page.
         return View::render('events/show', [
-            'layout'         => 'layouts/default',
-            'title'          => $event['title'],
-            'event'          => $event,
-            'cagnotte'       => $cagnotte,
-            'rsvpCounts'     => $rsvpCounts,
-            'totalValidated' => $totalValidated,
-            'totalPending'   => $totalPending,
+            // No 'layout' — show.php renders as standalone HTML (no MyWish header).
+            'title'            => $event['title'],
+            'event'            => $event,
+            'cagnotte'         => $cagnotte,
+            'validatedPledges' => $validatedPledges,
+            'rsvpCounts'       => $rsvpCounts,
+            'totalValidated'   => $totalValidated,
+            'totalPending'     => $totalPending,
         ]);
     }
 
